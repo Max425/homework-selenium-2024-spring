@@ -1,5 +1,5 @@
 import pytest
-from selenium.webdriver.support import expected_conditions
+from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 
 
@@ -13,7 +13,7 @@ class BaseCase:
         if timeout is None:
             timeout = 5
         try:
-            WebDriverWait(self.driver, timeout).until(expected_conditions.url_matches(url))
+            WebDriverWait(self.driver, timeout).until(EC.url_matches(url))
             return True
         except:
             raise Exception(f'{url} did not open in {timeout} sec, current url {self.driver.current_url}')
