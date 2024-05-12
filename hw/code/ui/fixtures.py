@@ -2,7 +2,7 @@ import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from ui.pages.cases_page import CasesPage
-
+from dotenv import load_dotenv
 from ui.pages.main_page import MainPage
 
 
@@ -95,3 +95,12 @@ def main_page(driver):
 def cases_page(driver):
     driver.get(CasesPage.url)
     return CasesPage(driver=driver)
+
+@pytest.fixture(scope='session')
+def credentials():
+    load_dotenv()
+    return os.getenv('LOGIN'), os.getenv('PASSWORD')
+
+@pytest.fixture
+def auth_page(driver):
+    return AuthPage(driver=driver)
