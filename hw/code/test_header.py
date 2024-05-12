@@ -13,7 +13,6 @@ class TestHeader(BaseCase):
         (MainPageLocators.NEWS_LINK, 'https://ads.vk.com/news'),
         (MainPageLocators.CASES_LINK, 'https://ads.vk.com/cases'),
         (MainPageLocators.FORUM_LINK, 'https://ads.vk.com/upvote')
-       # (MainPageLocators.MONEY_LINK, 'https://ads.vk.com/partner')
     ])
     def test_go_to_sections(self, main_page, locator, url):
         main_page.click(locator)
