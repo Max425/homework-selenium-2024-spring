@@ -1,5 +1,6 @@
 from ui.locators.auth_page_locators import AuthPageLocators
 from ui.pages.base_page import BasePage
+import time
 
 
 class AuthPage(BasePage):
@@ -19,4 +20,3 @@ class AuthPage(BasePage):
         password_input.send_keys(password)
 
         self.click(self.locators.SUBMIT_BUTTON)
-        
