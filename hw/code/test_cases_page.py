@@ -1,4 +1,4 @@
-from base import BaseCase
+from base_case import BaseCase
 
 
 class TestCasesPage(BaseCase):

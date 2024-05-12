@@ -1,10 +1,9 @@
-import os
-
 import pytest
-from dotenv import load_dotenv
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from ui.pages.cases_page import CasesPage
+
+from ui.pages.main_page import MainPage
 
 
 @pytest.fixture()
@@ -85,6 +84,11 @@ def driver(config):
     driver.maximize_window()
     yield driver
     driver.quit()
+
+
+@pytest.fixture
+def main_page(driver):
+    return MainPage(driver=driver)
 
 
 @pytest.fixture
