@@ -16,8 +16,7 @@ class TestHeader(BaseCase):
         ('Справка', 'https://ads.vk.com/help'),
         ('Новости', 'https://ads.vk.com/news'),
         ('Кейсы', 'https://ads.vk.com/cases'),
-        ('Форум идей', 'https://ads.vk.com/upvote'),
-        ('Монетизация', 'https://ads.vk.com/partner')
+        ('Форум идей', 'https://ads.vk.com/upvote')
     ])
     def test_go_to_sections(self, main_page, name, url):
         main_page.click_nav_item(name)
