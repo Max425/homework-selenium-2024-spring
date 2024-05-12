@@ -1,9 +1,12 @@
+import os
+
 import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from ui.pages.cases_page import CasesPage
 from dotenv import load_dotenv
 from ui.pages.main_page import MainPage
+from ui.pages.auth_page import AuthPage
 
 
 @pytest.fixture()
