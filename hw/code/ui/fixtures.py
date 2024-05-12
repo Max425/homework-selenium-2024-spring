@@ -3,12 +3,12 @@ import os
 import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-from ui.pages.cases_page import CasesPage
 from ui.pages.home_page import HomePage
 from ui.pages.budget_page import BudgetPage
 from ui.pages.main_page import MainPage
 from dotenv import load_dotenv
 from ui.pages.auth_page import AuthPage
+from ui.pages.money_page import MoneyPage
 
 LOGIN_URL = 'https://ads.vk.com/hq/registration'
 
@@ -70,9 +70,9 @@ def main_page(driver):
 
 
 @pytest.fixture
-def cases_page(driver):
-    driver.get(CasesPage.url)
-    return CasesPage(driver=driver)
+def money_page(driver):
+    driver.get(MoneyPage.url)
+    return MoneyPage(driver=driver)
 
 
 @pytest.fixture(scope='session')

@@ -29,6 +29,10 @@ class BasePage(object):
         ActionChains(self.driver).move_to_element(elem).click(elem).perform()
         return elem
 
+    def go_to_new_tab(self):
+        handles = self.driver.window_handles
+        assert len(handles) > 1
+        self.driver.switch_to.window(handles[1])
 
     def is_visible(self, locator, timeout=None):
         try:
