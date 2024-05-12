@@ -1,5 +1,6 @@
 from ui.locators.auth_page_locators import AuthPageLocators
 from ui.pages.base_page import BasePage
+import time
 
 
 class AuthPage(BasePage):
