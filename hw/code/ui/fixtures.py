@@ -12,6 +12,7 @@ from ui.pages.auth_page import AuthPage
 
 LOGIN_URL = 'https://ads.vk.com/hq/registration'
 
+
 @pytest.fixture()
 def driver(config):
     browser = config['browser']
@@ -19,6 +20,7 @@ def driver(config):
     selenoid = config['selenoid']
     vnc = config['vnc']
     options = Options()
+    options.add_argument("window-size=1200x600")
     if selenoid:
         capabilities = {
             'browserName': 'chrome',
@@ -62,36 +64,6 @@ def all_drivers(config, request):
     browser.quit()
 
 
-@pytest.fixture()
-def driver(config):
-    browser = config['browser']
-    url = config['url']
-    selenoid = config['selenoid']
-    vnc = config['vnc']
-    options = Options()
-    if selenoid:
-        capabilities = {
-            'browserName': 'chrome',
-            'version': '118.0',
-        }
-        if vnc:
-            capabilities['enableVNC'] = True
-        driver = webdriver.Remote(
-            'http://127.0.0.1:4444/wd/hub',
-            options=options,
-        )
-    elif browser == 'chrome':
-        driver = webdriver.Chrome()
-    elif browser == 'firefox':
-        driver = webdriver.Firefox()
-    else:
-        raise RuntimeError(f'Unsupported browser: "{browser}"')
-    driver.get(url)
-    driver.maximize_window()
-    yield driver
-    driver.quit()
-
-
 @pytest.fixture
 def main_page(driver):
     return MainPage(driver=driver)
@@ -102,20 +74,24 @@ def cases_page(driver):
     driver.get(CasesPage.url)
     return CasesPage(driver=driver)
 
+
 @pytest.fixture(scope='session')
 def credentials():
     load_dotenv()
     return os.getenv('LOGIN'), os.getenv('PASSWORD')
 
+
 @pytest.fixture
 def auth_page(driver):
     return AuthPage(driver=driver)
+
 
 @pytest.fixture
 def home_page(driver, credentials, auth_page):
     driver.get(LOGIN_URL)
     auth_page.login(*credentials)
     return HomePage(driver=driver)
+
 
 @pytest.fixture
 def budget_page(driver, home_page):

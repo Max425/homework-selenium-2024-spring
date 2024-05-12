@@ -19,3 +19,9 @@ class MainPageLocators:
     @staticmethod
     def SLIDER_BUTTON(url):
         return By.XPATH, f"//a[contains(@class, 'MainSlider_button__') and contains(@href, '{url}')]"
+
+    SEE_ALL_LINK = (By.XPATH, "//*[contains(@class, 'styles_all__')]")
+
+    TEACH_WEB_TITLE = (By.XPATH, "//*[contains(@class, 'GetStarted_title__')]")
+    TEACH_WEB_SUBTITLE = (By.XPATH, "//*[contains(@class, 'GetStarted_text__')]")
+    TEACH_WEB_BUTTON = (By.XPATH, "/html/body/section/div[2]/div/div/div[3]/a")
