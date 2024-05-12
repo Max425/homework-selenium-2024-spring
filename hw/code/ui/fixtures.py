@@ -1,10 +1,16 @@
+import os
+
 import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from ui.pages.cases_page import CasesPage
-from dotenv import load_dotenv
+from ui.pages.home_page import HomePage
+from ui.pages.budget_page import BudgetPage
 from ui.pages.main_page import MainPage
+from dotenv import load_dotenv
+from ui.pages.auth_page import AuthPage
 
+LOGIN_URL = 'https://ads.vk.com/hq/registration'
 
 @pytest.fixture()
 def driver(config):
@@ -104,3 +110,14 @@ def credentials():
 @pytest.fixture
 def auth_page(driver):
     return AuthPage(driver=driver)
+
+@pytest.fixture
+def home_page(driver, credentials, auth_page):
+    driver.get(LOGIN_URL)
+    auth_page.login(*credentials)
+    return HomePage(driver=driver)
+
+@pytest.fixture
+def budget_page(driver, home_page):
+    driver.get(BudgetPage.url)
+    return BudgetPage(driver=driver)
