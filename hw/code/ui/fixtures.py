@@ -1,3 +1,5 @@
+import os
+
 import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
@@ -6,6 +8,7 @@ from ui.pages.home_page import HomePage
 from ui.pages.budget_page import BudgetPage
 from ui.pages.main_page import MainPage
 from dotenv import load_dotenv
+from ui.pages.auth_page import AuthPage
 
 LOGIN_URL = 'https://ads.vk.com/hq/registration'
 

@@ -2,22 +2,16 @@ from selenium.webdriver.common.by import By
 
 
 class MainPageLocators:
+    # header
+    CABINET_BUTTON = (By.XPATH, "//*[contains(@class, 'NavigationVKAds_right__')]/a[contains(@class, 'ButtonCabinet_primary__')]")
+    HEADER_HELP = (By.XPATH, f"//*[contains(@class, 'NavigationVKAdsItem_') and text()='Справка']")
+    NEWS_LINK = (By.XPATH, f"//*[contains(@class, 'NavigationVKAdsItem_') and text()='Новости']")
+    CASES_LINK = (By.XPATH, f"//*[contains(@class, 'NavigationVKAdsItem_') and text()='Кейсы']")
+    FORUM_LINK = (By.XPATH, f"//*[contains(@class, 'NavigationVKAdsItem_') and text()='Форум идей']")
+    MONEY_LINK = (By.XPATH, f"//*[contains(@class, 'NavigationVKAdsItem_') and text()='Монетизация']")
     VK_ADS_LOGO = (By.XPATH, "//*[contains(@class, 'HeaderLeft_home')]")
 
-    NAV_CABINET_BUTTON = (
-        By.XPATH,
-        "//*[contains(@class, 'NavigationVKAds_right')]/a[contains(@class, 'ButtonCabinet_primary')]"
-    )
-
-    FOOTER_CABINET_BUTTON = (
-        By.XPATH,
-        "//*[contains(@class, 'Footer_leftContent')]/a[contains(@class, 'ButtonCabinet_primary')]"
-    )
-
-    @staticmethod
-    def NAV_ITEM(item_name):
-        return By.XPATH, f"//*[contains(@class, 'NavigationVKAdsItem_') and text()='{item_name}']"
-
+    # content
     @staticmethod
     def SLIDER_BUTTON(url):
         return By.XPATH, f"//a[contains(@class, 'MainSlider_button') and contains(@href, '{url}')]"
