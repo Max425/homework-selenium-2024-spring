@@ -108,13 +108,19 @@ def credentials():
     load_dotenv()
     return os.getenv('LOGIN'), os.getenv('PASSWORD')
 
+@pytest.fixture(scope='session')
+def credentials_without_login():
+    load_dotenv()
+    return os.getenv('LOGIN_WITHOUT_CABINET'), os.getenv('PASSWORD_WITHOUT_CABINET')
+
 @pytest.fixture
 def auth_page(driver):
     return AuthPage(driver=driver)
 
 @pytest.fixture
-def registration_page(driver):
+def registration_page(driver, credentials_without_login, auth_page):
     driver.get(LOGIN_URL)
+    auth_page.login(*credentials_without_login)
     return RegistrationPage(driver=driver)
 
 @pytest.fixture

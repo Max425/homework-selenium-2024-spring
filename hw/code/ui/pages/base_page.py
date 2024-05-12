@@ -28,3 +28,8 @@ class BasePage(object):
             return True
         except TimeoutException:
             return False
+
+    def fill_field(self, field: str, value: str):
+        elem = self.find(field)
+        elem.clear()
+        elem.send_keys(value)

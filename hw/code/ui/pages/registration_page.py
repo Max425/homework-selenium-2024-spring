@@ -14,52 +14,35 @@ class RegistrationPage(BasePage):
     def change_account_type(self, account_type: str):
         self.click(RegistrationPageLocators.CHANGE_ACCOUNT_TYPE_BUTTON(account_type))
 
-    def get_selected_language(self) -> str:
-        return self.find(RegistrationPageLocators.SELECTED_LANGUAGE).text
+    def is_physical_field_visible(self) -> bool:
+        return self.is_visible(RegistrationPageLocators.CHANGE_ACCOUNT_TYPE_BUTTON('Физическое лицо'))
 
-    def select_language(self, language: str):
-        self.click(RegistrationPageLocators.LANGUAGE_BUTTON(language))
+    def change_country(self, country: str):
+        self.click(RegistrationPageLocators.CHANGE_COUNTRY)
+        self.click(RegistrationPageLocators.CHANGE_COUNTRY_LIST_ITEM(country))
 
-    def select_country(self, country_name: str):
-        self.click(RegistrationPageLocators.COUNTRY_DROPDOWN)
-        self.click(RegistrationPageLocators.COUNTRY_DROPDOWN_ITEM(country_name))
+    def change_country(self, country: str):
+        self.click(RegistrationPageLocators.CHANGE_COUNTRY)
+        self.click(RegistrationPageLocators.CHANGE_COUNTRY_LIST_ITEM(country))
 
-    def currency_dropdown_contain_items(self, item_names: list):
-        self.click(RegistrationPageLocators.CURRENCY_DROPDOWN)
-        for item_name in item_names:
-            item = self.find(RegistrationPageLocators.CURRENCY_DROPDOWN_ITEM(item_name))
-            if item is None:
-                return False
-
-            return True
+    def get_selected_currency(self, currency) -> str:
+        self.click(RegistrationPageLocators.CURRENCY)
+        return self.find(RegistrationPageLocators.CURRENCY_LIST_ITEM(currency)).text
 
     def click_submit_button(self):
-        self.scroll_and_click(RegistrationPageLocators.SUBMIT_BUTTON)
+        self.click(RegistrationPageLocators.SUBMIT_BUTTON)
 
-    def get_email_error(self) -> str:
-        return self.find(RegistrationPageLocators.EMAIL_ERROR).text
+    def get_error(self) -> str:
+        return self.find(RegistrationPageLocators.ERROR_FIELD).text
 
-    def get_inn_error(self) -> str:
-        return self.find(RegistrationPageLocators.INN_ERROR).text
+    def fill_email_field(self, email: str):
+        self.fill_field(RegistrationPageLocators.EMAIL_FIELD, email)
 
-    def get_offer_error(self) -> str:
-        return self.find(RegistrationPageLocators.OFFER_ERROR).text
+    def is_inn_field_visible(self) -> bool:
+        return self.is_visible(RegistrationPageLocators.INN_FIELD)
 
-    def click_offer_checkbox(self):
-        self.scroll_and_click(RegistrationPageLocators.OFFER_CHECKBOX)
+    def fill_inn_field(self, inn: str):
+        self.fill_field(RegistrationPageLocators.INN_FIELD, inn)
 
-    def enter_email(self, email: str):
-        elem = self.find(RegistrationPageLocators.EMAIL_INPUT)
-        elem.clear()
-        elem.send_keys(email)
-
-    def enter_inn(self, inn: str):
-        elem = self.find(RegistrationPageLocators.INN_INPUT)
-        elem.clear()
-        elem.send_keys(inn)
-
-    def physical_type_became_invisible(self) -> bool:
-        return self.became_invisible(RegistrationPageLocators.ACCOUNT_TYPE_BUTTON('Физическое лицо'))
-
-    def physical_type_became_visible(self) -> bool:
-        return self.became_visible(RegistrationPageLocators.ACCOUNT_TYPE_BUTTON('Физическое лицо'))
+    def click_offer_field(self):
+        self.click(RegistrationPageLocators.OFFER_FIELD)
