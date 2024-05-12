@@ -1,15 +1,14 @@
-# запуск семинара
+# [ДЗ 4](https://park.vk.company/blog/topic/view/22765/) по QA
 
-В `hw/code/files/userdata` надо подставить данные для входа.
+### Авторизация
+
+В `.env` надо подставить данные для входа.
 
 ### Запуск
 
 ```bash
-pytest hw/code/test_park.py --url='https://park.vk.company/' --browser=firefox
+./runner_tests.sh
 ```
-//TODO: должно через хром работать, но у меня только в firefox работает
-
-# [ДЗ 4](https://park.vk.company/blog/topic/view/22765/) по QA
 
 ## Состав команды
 

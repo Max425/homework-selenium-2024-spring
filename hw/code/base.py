@@ -1,28 +1,19 @@
-import json
-
 import pytest
-
-from ui.pages.lk_page import LkPage
-from ui.pages.login_page import LoginPage
-
-CLICK_RETRY = 3
-
-
-def credentials():
-    with open('./hw/code/files/userdata') as file:
-        return json.load(file)
+from selenium.webdriver.support import expected_conditions
+from selenium.webdriver.support.wait import WebDriverWait
 
 
 class BaseCase:
-    authorize = True
-
     @pytest.fixture(scope='function', autouse=True)
     def setup(self, driver, config):
         self.driver = driver
         self.config = config
 
-        self.login_page = LoginPage(driver)
-        self.lk_page = LkPage(driver)
-
-        if self.authorize:
-            self.main_page = self.login_page.login(**credentials())
+    def is_opened(self, url, timeout=None):
+        if timeout is None:
+            timeout = 5
+        try:
+            WebDriverWait(self.driver, timeout).until(expected_conditions.url_matches(url))
+            return True
+        except:
+            raise Exception(f'{url} did not open in {timeout} sec, current url {self.driver.current_url}')
