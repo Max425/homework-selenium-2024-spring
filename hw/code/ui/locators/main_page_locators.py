@@ -24,4 +24,8 @@ class MainPageLocators:
 
     TEACH_WEB_TITLE = (By.XPATH, "//*[contains(@class, 'GetStarted_title__')]")
     TEACH_WEB_SUBTITLE = (By.XPATH, "//*[contains(@class, 'GetStarted_text__')]")
-    TEACH_WEB_BUTTON = (By.XPATH, "/html/body/section/div[2]/div/div/div[3]/a")
+    TEACH_WEB_BUTTON = (By.XPATH, "//*[contains(@class, 'GetStarted_wrapper__')]")
+
+    NEWS_SECTION = (By.XPATH, "//*[contains(@class, 'News_section___')]")
+    NEWS_TITLE = (By.XPATH, "//*[contains(@class, 'News_title__')]")
+    NEWS_BUTTON = (By.XPATH, "//*[contains(@class, 'News_button__')]")
