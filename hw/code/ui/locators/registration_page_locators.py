@@ -3,7 +3,13 @@ from ui.locators.base_page_locators import BasePageLocators
 
 
 class RegistrationPageLocators(BasePageLocators):
+    USE_CABINET_MYTARGET_BUTTON = (By.ID, "click-exportMTButton")
+
     CREATE_NEW_CABINET_BUTTON = (By.ID, "click-createNewButton")
+
+    @staticmethod
+    def CHANGE_ACCOUNT_TYPE_BUTTON(account_type):
+        return By.XPATH, f"//*[contains(@class, 'vkuiRadio__title')]//span[text()='{account_type}']"
 
     @staticmethod
     def LANGUAGE_BUTTON(language):
@@ -44,7 +50,3 @@ class RegistrationPageLocators(BasePageLocators):
     SUBMIT_BUTTON = (By.XPATH, f"//*[@data-testid='create-button']")
 
     OFFER_CHECKBOX = (By.NAME, "offer")
-
-    @staticmethod
-    def ACCOUNT_TYPE_BUTTON(account_type):
-        return By.XPATH, f"//*[contains(@class, 'vkuiRadio__title')]//span[text()='{account_type}']"

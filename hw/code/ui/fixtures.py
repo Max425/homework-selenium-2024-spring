@@ -3,6 +3,7 @@ import os
 import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+from hw.code.ui.pages.registration_page import RegistrationPage
 from ui.pages.cases_page import CasesPage
 from ui.pages.home_page import HomePage
 from ui.pages.budget_page import BudgetPage
@@ -110,6 +111,15 @@ def credentials():
 @pytest.fixture
 def auth_page(driver):
     return AuthPage(driver=driver)
+
+@pytest.fixture
+def registration_page(driver):
+    driver.get(LOGIN_URL)
+    return RegistrationPage(driver=driver)
+
+@pytest.fixture
+def registration_new_page(registration_page):
+    registration_page.click_create_new_cabinet_button()
 
 @pytest.fixture
 def home_page(driver, credentials, auth_page):

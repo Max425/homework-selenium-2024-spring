@@ -3,61 +3,63 @@ from ui.locators.registration_page_locators import RegistrationPageLocators
 
 
 class RegistrationPage(BasePage):
-    locators = RegistrationPageLocators()
     url = 'https://ads.vk.com/hq/registration'
 
+    def click_use_cabinet_myTarget_button(self):
+        self.click(RegistrationPageLocators.USE_CABINET_MYTARGET_BUTTON)
+
     def click_create_new_cabinet_button(self):
-        self.click(self.locators.CREATE_NEW_CABINET_BUTTON)
+        self.click(RegistrationPageLocators.CREATE_NEW_CABINET_BUTTON)
+
+    def change_account_type(self, account_type: str):
+        self.click(RegistrationPageLocators.CHANGE_ACCOUNT_TYPE_BUTTON(account_type))
 
     def get_selected_language(self) -> str:
-        return self.find(self.locators.SELECTED_LANGUAGE).text
+        return self.find(RegistrationPageLocators.SELECTED_LANGUAGE).text
 
     def select_language(self, language: str):
-        self.click(self.locators.LANGUAGE_BUTTON(language))
+        self.click(RegistrationPageLocators.LANGUAGE_BUTTON(language))
 
     def select_country(self, country_name: str):
-        self.click(self.locators.COUNTRY_DROPDOWN)
-        self.click(self.locators.COUNTRY_DROPDOWN_ITEM(country_name))
+        self.click(RegistrationPageLocators.COUNTRY_DROPDOWN)
+        self.click(RegistrationPageLocators.COUNTRY_DROPDOWN_ITEM(country_name))
 
     def currency_dropdown_contain_items(self, item_names: list):
-        self.click(self.locators.CURRENCY_DROPDOWN)
+        self.click(RegistrationPageLocators.CURRENCY_DROPDOWN)
         for item_name in item_names:
-            item = self.find(self.locators.CURRENCY_DROPDOWN_ITEM(item_name))
+            item = self.find(RegistrationPageLocators.CURRENCY_DROPDOWN_ITEM(item_name))
             if item is None:
                 return False
 
             return True
 
     def click_submit_button(self):
-        self.scroll_and_click(self.locators.SUBMIT_BUTTON)
+        self.scroll_and_click(RegistrationPageLocators.SUBMIT_BUTTON)
 
     def get_email_error(self) -> str:
-        return self.find(self.locators.EMAIL_ERROR).text
+        return self.find(RegistrationPageLocators.EMAIL_ERROR).text
 
     def get_inn_error(self) -> str:
-        return self.find(self.locators.INN_ERROR).text
+        return self.find(RegistrationPageLocators.INN_ERROR).text
 
     def get_offer_error(self) -> str:
-        return self.find(self.locators.OFFER_ERROR).text
+        return self.find(RegistrationPageLocators.OFFER_ERROR).text
 
     def click_offer_checkbox(self):
-        self.scroll_and_click(self.locators.OFFER_CHECKBOX)
+        self.scroll_and_click(RegistrationPageLocators.OFFER_CHECKBOX)
 
     def enter_email(self, email: str):
-        elem = self.find(self.locators.EMAIL_INPUT)
+        elem = self.find(RegistrationPageLocators.EMAIL_INPUT)
         elem.clear()
         elem.send_keys(email)
 
     def enter_inn(self, inn: str):
-        elem = self.find(self.locators.INN_INPUT)
+        elem = self.find(RegistrationPageLocators.INN_INPUT)
         elem.clear()
         elem.send_keys(inn)
 
-    def select_account_type(self, account_type: str):
-        self.scroll_and_click(self.locators.ACCOUNT_TYPE_BUTTON(account_type))
-
     def physical_type_became_invisible(self) -> bool:
-        return self.became_invisible(self.locators.ACCOUNT_TYPE_BUTTON('Физическое лицо'))
+        return self.became_invisible(RegistrationPageLocators.ACCOUNT_TYPE_BUTTON('Физическое лицо'))
 
     def physical_type_became_visible(self) -> bool:
-        return self.became_visible(self.locators.ACCOUNT_TYPE_BUTTON('Физическое лицо'))
+        return self.became_visible(RegistrationPageLocators.ACCOUNT_TYPE_BUTTON('Физическое лицо'))
