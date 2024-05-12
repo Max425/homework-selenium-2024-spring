@@ -4,13 +4,13 @@ import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from hw.code.ui.pages.registration_page import RegistrationPage
-from ui.pages.cases_page import CasesPage
 from ui.pages.home_page import HomePage
 from ui.pages.budget_page import BudgetPage
 from ui.pages.main_page import MainPage
 from dotenv import load_dotenv
 from ui.pages.auth_page import AuthPage
 from ui.pages.money_page import MoneyPage
+from ui.pages.menu_page import MenuPage
 
 LOGIN_URL = 'https://ads.vk.com/hq/registration'
 
@@ -108,6 +108,10 @@ def home_page(driver, credentials, auth_page):
     auth_page.login(*credentials)
     return HomePage(driver=driver)
 
+@pytest.fixture
+def menu_page(driver, home_page):
+    driver.get(MenuPage.url)
+    return MenuPage(driver=driver)
 
 @pytest.fixture
 def budget_page(driver, home_page):

@@ -3,11 +3,6 @@ import pytest
 from base_case import BaseCase
 
 
-@pytest.fixture
-def new_cabinet(registration_page):
-    registration_page.click_create_new_cabinet_button()
-
-
 class TestRegistrationPage(BaseCase):
     def test_open_use_cabinet_myTarget(self, registration_page):
         registration_page.click_use_cabinet_myTarget_button()
