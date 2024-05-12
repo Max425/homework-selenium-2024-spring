@@ -10,8 +10,10 @@ from ui.pages.budget_page import BudgetPage
 from ui.pages.main_page import MainPage
 from dotenv import load_dotenv
 from ui.pages.auth_page import AuthPage
+from ui.pages.money_page import MoneyPage
 
 LOGIN_URL = 'https://ads.vk.com/hq/registration'
+
 
 @pytest.fixture()
 def driver(config):
@@ -20,6 +22,7 @@ def driver(config):
     selenoid = config['selenoid']
     vnc = config['vnc']
     options = Options()
+    options.add_argument("window-size=1200x600")
     if selenoid:
         capabilities = {
             'browserName': 'chrome',
@@ -63,45 +66,16 @@ def all_drivers(config, request):
     browser.quit()
 
 
-@pytest.fixture()
-def driver(config):
-    browser = config['browser']
-    url = config['url']
-    selenoid = config['selenoid']
-    vnc = config['vnc']
-    options = Options()
-    if selenoid:
-        capabilities = {
-            'browserName': 'chrome',
-            'version': '118.0',
-        }
-        if vnc:
-            capabilities['enableVNC'] = True
-        driver = webdriver.Remote(
-            'http://127.0.0.1:4444/wd/hub',
-            options=options,
-        )
-    elif browser == 'chrome':
-        driver = webdriver.Chrome()
-    elif browser == 'firefox':
-        driver = webdriver.Firefox()
-    else:
-        raise RuntimeError(f'Unsupported browser: "{browser}"')
-    driver.get(url)
-    driver.maximize_window()
-    yield driver
-    driver.quit()
-
-
 @pytest.fixture
 def main_page(driver):
     return MainPage(driver=driver)
 
 
 @pytest.fixture
-def cases_page(driver):
-    driver.get(CasesPage.url)
-    return CasesPage(driver=driver)
+def money_page(driver):
+    driver.get(MoneyPage.url)
+    return MoneyPage(driver=driver)
+
 
 @pytest.fixture(scope='session')
 def credentials():
@@ -116,6 +90,7 @@ def credentials_without_login():
 @pytest.fixture
 def auth_page(driver):
     return AuthPage(driver=driver)
+
 
 @pytest.fixture
 def registration_page(driver, credentials_without_login, auth_page):
@@ -132,6 +107,7 @@ def home_page(driver, credentials, auth_page):
     driver.get(LOGIN_URL)
     auth_page.login(*credentials)
     return HomePage(driver=driver)
+
 
 @pytest.fixture
 def budget_page(driver, home_page):
