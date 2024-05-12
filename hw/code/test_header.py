@@ -1,24 +1,20 @@
 import pytest
 
 from base_case import BaseCase
+from ui.locators.cases_page_locators import MainPageLocators
 
 
 class TestHeader(BaseCase):
-    def test_go_to_home(self, main_page):
-        main_page.click_vk_ads_logo()
-        assert self.is_opened(main_page.url)
 
-    def test_go_to_auth(self, main_page):
-        main_page.click_nav_cabinet_button()
-        assert self.is_opened('https://id.vk.com/auth')
-
-    @pytest.mark.parametrize("name,url", [
-        ('Справка', 'https://ads.vk.com/help'),
-        ('Новости', 'https://ads.vk.com/news'),
-        ('Кейсы', 'https://ads.vk.com/cases'),
-        ('Форум идей', 'https://ads.vk.com/upvote')
+    @pytest.mark.parametrize("locator,url", [
+        (MainPageLocators.VK_ADS_LOGO, 'https://id.vk.com/'),
+        (MainPageLocators.CABINET_BUTTON, 'https://id.vk.com/auth'),
+        (MainPageLocators.HEADER_HELP, 'https://ads.vk.com/help'),
+        (MainPageLocators.NEWS_LINK, 'https://ads.vk.com/news'),
+        (MainPageLocators.CASES_LINK, 'https://ads.vk.com/cases'),
+        (MainPageLocators.FORUM_LINK, 'https://ads.vk.com/upvote'),
+        (MainPageLocators.MONEY_LINK, 'https://ads.vk.com/partner')
     ])
-    def test_go_to_sections(self, main_page, name, url):
-        main_page.click_nav_item(name)
+    def test_go_to_sections(self, main_page, locator, url):
+        main_page.click(locator)
         assert self.is_opened(url)
-
