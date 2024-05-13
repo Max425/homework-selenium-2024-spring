@@ -13,5 +13,5 @@ class BudgetPageLocators:
     ERROR_MESSAGE = (By.XPATH, "//*[@role='alert']")
 
     SUBMIT_BUTTON = (By.XPATH, "//*[contains(@class, 'CreateInvoiceModal_button__')]")
-    
-    VKPAY_IFRAME = (By.CSS_SELECTOR, "iframe.CreateInvoiceModal_iframe #Main")
+
+    VKPAY_IFRAME = (By.XPATH, "//iframe[contains(@class, 'CreateInvoiceModal_iframe')]")

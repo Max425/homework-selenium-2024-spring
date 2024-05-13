@@ -1,5 +1,6 @@
 from ui.locators.auth_page_locators import AuthPageLocators
 from ui.pages.base_page import BasePage
+from selenium.webdriver.common.by import By
 import time
 
 
@@ -20,3 +21,4 @@ class AuthPage(BasePage):
         password_input.send_keys(password)
 
         self.click(self.locators.SUBMIT_BUTTON)
+        self.find(locator=(By.ID, "header")) # ждем рендера страницы

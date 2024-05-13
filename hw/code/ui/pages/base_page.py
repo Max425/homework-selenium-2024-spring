@@ -25,6 +25,5 @@ class BasePage(object):
     def is_visible(self, locator, timeout=None):
         try:
             self.wait(timeout).until(EC.visibility_of_element_located(locator))
-            return True
         except TimeoutException:
             return False
