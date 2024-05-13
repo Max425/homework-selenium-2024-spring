@@ -37,10 +37,11 @@ class BasePage(object):
     def is_visible(self, locator, timeout=None):
         try:
             self.wait(timeout).until(EC.visibility_of_element_located(locator))
+            return True
         except TimeoutException:
             return False
 
-    def fill_field(self, field: str, value: str):
+    def fill_field(self, field, value):
         elem = self.find(field)
         elem.clear()
         elem.send_keys(value)
