@@ -2,7 +2,7 @@ from ui.fixtures import *
 
 
 def pytest_addoption(parser):
-    parser.addoption('--browser', default='firefox') #TODO: должно через хром работать, но у меня только в firefox работает
+    parser.addoption('--browser', default='chrome')
     parser.addoption('--url', default='https://ads.vk.com/')
     parser.addoption('--debug_log', action='store_true')
     parser.addoption('--selenoid', action='store_true')
@@ -29,5 +29,5 @@ def config(request):
         'url': url,
         'debug_log': debug_log,
         'selenoid': selenoid,
-        'vnc': vnc,
+        'vnc': vnc
     }

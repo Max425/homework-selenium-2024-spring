@@ -7,16 +7,13 @@ class BudgetPage(BasePage):
     locators = BudgetPageLocators()
 
     def click_replenish_budget_button(self):
-        self.click(self.locators.REPLENISH_BUDGET_BUTTON)
+        self.click(self.locators.REPLENISH_BUDGET_BUTTON, timeout=10)
 
-    def replenishment_modal_page_became_visible(self) -> bool:
-        return self.became_visible(self.locators.REPLENISHMENT_MODAL_PAGE)
+    def replenishment_modal_visible(self) -> bool:
+        return self.is_visible(self.locators.REPLENISHMENT_MODAL)
 
-    def close_replenishment_modal_page(self):
-        self.click(self.locators.CLOSE_MODAL_PAGE_BUTTON)
-
-    def replenishment_modal_page_became_invisible(self) -> bool:
-        return self.became_invisible(self.locators.REPLENISHMENT_MODAL_PAGE)
+    def get_replenishment_modal(self):
+        return self.find(self.locators.REPLENISHMENT_MODAL)
 
     def enter_amount(self, amount: str | int):
         amount_input = self.find(self.locators.AMOUNT_INPUT)
@@ -40,5 +37,8 @@ class BudgetPage(BasePage):
     def click_submit_button(self):
         self.click(self.locators.SUBMIT_BUTTON)
 
-    def vkpay_iframe_became_visible(self) -> bool:
-        return self.became_visible(self.locators.VKPAY_IFRAME)
+    def vkpay_iframe_visible(self) -> bool:
+        return self.is_visible(self.locators.VKPAY_IFRAME, timeout=10)
+
+    def get_vkpay_iframe(self):
+        return self.find(self.locators.VKPAY_IFRAME)
