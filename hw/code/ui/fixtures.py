@@ -3,7 +3,7 @@ import os
 import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-from hw.code.ui.pages.registration_page import RegistrationPage
+from ui.pages.registration_page import RegistrationPage
 from ui.pages.home_page import HomePage
 from ui.pages.budget_page import BudgetPage
 from ui.pages.main_page import MainPage

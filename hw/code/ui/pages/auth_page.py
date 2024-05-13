@@ -5,7 +5,8 @@ import time
 
 
 class AuthPage(BasePage):
-
+    locators = AuthPageLocators()
+    
     def login(self, login, password):
         self.click(AuthPageLocators.MAIL_RU_AUTH_BUTTON)
 

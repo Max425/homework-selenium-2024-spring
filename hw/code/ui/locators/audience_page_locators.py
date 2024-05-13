@@ -14,7 +14,7 @@ class AudiencePageLocators:
     def MODAL(title):
         return (
             By.XPATH,
-            f"//*[contains(@class, 'ModalSidebarPage_') and child::h2[text()='{title}']]"
+            f"//*[contains(@class, 'ModalSidebarPage_container') and contains(div/h2, '{title}')]"
         )
 
     @staticmethod
