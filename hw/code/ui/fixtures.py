@@ -9,6 +9,7 @@ from ui.pages.budget_page import BudgetPage
 from ui.pages.main_page import MainPage
 from dotenv import load_dotenv
 from ui.pages.auth_page import AuthPage
+from ui.pages.ecomm_page import EcommPage
 
 LOGIN_URL = 'https://ads.vk.com/hq/registration'
 
@@ -121,3 +122,8 @@ def home_page(driver, credentials, auth_page):
 def budget_page(driver, home_page):
     driver.get(BudgetPage.url)
     return BudgetPage(driver=driver)
+
+@pytest.fixture
+def ecomm_page(driver, home_page):
+    driver.get(EcommPage.url)
+    return EcommPage(driver=driver)
