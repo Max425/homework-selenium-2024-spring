@@ -29,7 +29,7 @@ class MenuPage(BasePage):
     def click_training_button(self):
         self.click(MainPageLocators.TRAINING_BUTTON)
 
-    def is_modal_training_visible(self):
+    def is_modal_training_visible(self) -> bool:
         return self.is_visible(MainPageLocators.TRAINING_MODAL_CONTENT)
     
     def click_settings_button(self):
