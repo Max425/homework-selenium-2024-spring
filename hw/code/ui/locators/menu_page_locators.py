@@ -19,3 +19,5 @@ class MainPageLocators:
     LEADADS_BUTTON = (By.XPATH, f"//*[contains(@href, '/hq/leadads')]")
     
     TRAINING_MODAL_CONTENT = (By.ID, "_modal_24")
+
+    SETTINGS_BUTTON = (By.XPATH, f"//*[contains(@href, '/hq/settings')]")

@@ -30,4 +30,4 @@ class RegistrationPageLocators:
     
     INN_FIELD = (By.NAME, "inn")
 
-    OFFER_FIELD = (By.XPATH, f"//*[contains(@class, 'registration_offerTitle__BqyqW')]")
+    OFFER_FIELD = (By.NAME, "offer")

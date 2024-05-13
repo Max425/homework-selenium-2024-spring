@@ -11,6 +11,8 @@ from dotenv import load_dotenv
 from ui.pages.auth_page import AuthPage
 from ui.pages.money_page import MoneyPage
 from ui.pages.menu_page import MenuPage
+from ui.pages.header_page import HeaderPage
+
 
 LOGIN_URL = 'https://ads.vk.com/hq/registration'
 
@@ -112,6 +114,11 @@ def home_page(driver, credentials, auth_page):
 def menu_page(driver, home_page):
     driver.get(MenuPage.url)
     return MenuPage(driver=driver)
+
+@pytest.fixture
+def header_page(driver, home_page):
+    driver.get(HeaderPage.url)
+    return HeaderPage(driver=driver)
 
 @pytest.fixture
 def budget_page(driver, home_page):
