@@ -17,13 +17,13 @@ class HeaderPage(BasePage):
     def click_wallet_button(self):
         self.click(HeaderPageLocators.WALLET_BUTTON)
 
-    def is_modal_wallet_visible(self):
+    def is_modal_wallet_visible(self) -> bool:
         return self.is_visible(HeaderPageLocators.REPLENISH_WALLET_BUTTON)
     
     def click_notifications_button(self):
         self.click(HeaderPageLocators.NOTIFICATIONS_BUTTON)
 
-    def is_modal_notifications_visible(self):
+    def is_modal_notifications_visible(self) -> bool:
         return self.is_visible(HeaderPageLocators.NOTIFICATIONS_CONTENT)
     
     def click_user_avatar_button(self):
