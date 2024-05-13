@@ -13,8 +13,8 @@ from ui.pages.auth_page import AuthPage
 from ui.pages.money_page import MoneyPage
 from ui.pages.menu_page import MenuPage
 from ui.pages.header_page import HeaderPage
+from ui.pages.forum_page import ForumPage
 from ui.pages.settings_notifications_page import SettingsNotificationsPage
-
 
 LOGIN_URL = 'https://ads.vk.com/hq/registration'
 
@@ -81,15 +81,23 @@ def money_page(driver):
     return MoneyPage(driver=driver)
 
 
+@pytest.fixture
+def forum_page(driver):
+    driver.get(ForumPage.url)
+    return ForumPage(driver=driver)
+
+
 @pytest.fixture(scope='session')
 def credentials():
     load_dotenv()
     return os.getenv('LOGIN'), os.getenv('PASSWORD')
 
+
 @pytest.fixture(scope='session')
 def credentials_without_login():
     load_dotenv()
     return os.getenv('LOGIN_WITHOUT_CABINET'), os.getenv('PASSWORD_WITHOUT_CABINET')
+
 
 @pytest.fixture
 def auth_page(driver):
@@ -102,9 +110,11 @@ def registration_page(driver, credentials_without_login, auth_page):
     auth_page.login(*credentials_without_login)
     return RegistrationPage(driver=driver)
 
+
 @pytest.fixture
 def registration_new_page(registration_page):
     registration_page.click_create_new_cabinet_button()
+
 
 @pytest.fixture
 def home_page(driver, credentials, auth_page):
@@ -112,25 +122,30 @@ def home_page(driver, credentials, auth_page):
     auth_page.login(*credentials)
     return HomePage(driver=driver)
 
+
 @pytest.fixture
 def menu_page(driver, home_page):
     driver.get(MenuPage.url)
     return MenuPage(driver=driver)
+
 
 @pytest.fixture
 def header_page(driver, home_page):
     driver.get(HeaderPage.url)
     return HeaderPage(driver=driver)
 
+
 @pytest.fixture
 def settings_notifications_page(driver, home_page):
     driver.get(SettingsNotificationsPage.url)
     return SettingsNotificationsPage(driver=driver)
 
+
 @pytest.fixture
 def budget_page(driver, home_page):
     driver.get(BudgetPage.url)
     return BudgetPage(driver=driver)
+
 
 @pytest.fixture
 def audience_page(driver, home_page):

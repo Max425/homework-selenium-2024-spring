@@ -10,18 +10,10 @@ class MoneyPage(BasePage):
     WEBSITE_FORMATS = ['Баннер', 'Instream', 'Адаптивный блок', 'InPage', 'Полноэкранный блок', 'Sticky-баннер']
 
     def page_contain_goods(self, item_names):
-        for item_name in item_names:
-            item = self.find(MoneyPageLocators.GOODS_ITEM_TITLE(item_name))
-            if item is None:
-                return False
-        return True
+        return all(self.find(MoneyPageLocators.GOODS_ITEM_TITLE(item_name)) for item_name in item_names)
 
     def page_contain_formats(self, item_names):
-        for item_name in item_names:
-            item = self.find(MoneyPageLocators.FORMAT_ITEM_TITLE(item_name))
-            if item is None:
-                return False
-        return True
+        return all(self.find(MoneyPageLocators.FORMAT_ITEM_TITLE(item_name)) for item_name in item_names)
 
     def submit_button_is_disabled(self):
         return self.find(MoneyPageLocators.SUBMIT_BUTTON).get_attribute("disabled") is not None
