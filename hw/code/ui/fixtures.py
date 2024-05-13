@@ -7,6 +7,7 @@ from hw.code.ui.pages.registration_page import RegistrationPage
 from ui.pages.home_page import HomePage
 from ui.pages.budget_page import BudgetPage
 from ui.pages.main_page import MainPage
+from ui.pages.audience_page import AudiencePage
 from dotenv import load_dotenv
 from ui.pages.auth_page import AuthPage
 from ui.pages.money_page import MoneyPage
@@ -130,3 +131,8 @@ def settings_notifications_page(driver, home_page):
 def budget_page(driver, home_page):
     driver.get(BudgetPage.url)
     return BudgetPage(driver=driver)
+
+@pytest.fixture
+def audience_page(driver, home_page):
+    driver.get(AudiencePage.url)
+    return AudiencePage(driver=driver)
