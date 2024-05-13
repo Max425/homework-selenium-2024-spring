@@ -29,5 +29,5 @@ def config(request):
         'url': url,
         'debug_log': debug_log,
         'selenoid': selenoid,
-        'vnc': vnc,
+        'vnc': vnc
     }
