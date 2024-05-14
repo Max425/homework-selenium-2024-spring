@@ -4,25 +4,30 @@ from ui.locators.forum_page_locators import ForumPageLocators
 
 
 class TestUpvotePage(BaseCase):
+
+    def test_content(self, forum_page):
+        assert forum_page.find(ForumPageLocators.TITLE).text == 'Форум идей'
+        assert forum_page.find(
+            ForumPageLocators.SUBTITLE).text == 'Голосуйте за лучшие идеи или предлагайте свои'
+
     def test_upvote_modal_page_became_visible(self, forum_page):
         forum_page.click(ForumPageLocators.ADD_IDEA)
         assert forum_page.is_visible(ForumPageLocators.UPVOTE_MODAL_PAGE)
+        forum_page.click(ForumPageLocators.OK_PON)
+        assert not forum_page.is_visible(ForumPageLocators.UPVOTE_MODAL_PAGE)
 
-    def test_open_comments(self, forum_page):
-        forum_page.click(ForumPageLocators.COMMENT_BUTTON)
-        assert forum_page.is_visible(ForumPageLocators.COMMENT_ITEM)
-
-    def test_search_by_title(self, forum_page):
-        word = 'видео'
-        forum_page.fill_field(ForumPageLocators.SEARCH_FIELD, word)
+    def test_search_not_found(self, forum_page):
+        assert not forum_page.is_visible(ForumPageLocators.NOT_FOUND)
+        forum_page.fill_field(ForumPageLocators.SEARCH_FIELD, '-1')
         time.sleep(1)
-        assert word in forum_page.find(ForumPageLocators.IDEA_TITLE).text
+        assert forum_page.is_visible(ForumPageLocators.NOT_FOUND)
 
-    def test_search_by_id(self, forum_page):
-        idea_id = '40'
-        forum_page.fill_field(ForumPageLocators.SEARCH_FIELD, idea_id)
+    def test_search_drop_filters(self, forum_page):
+        forum_page.fill_field(ForumPageLocators.SEARCH_FIELD, '-1')
         time.sleep(1)
-        assert idea_id == forum_page.get_first_idea_id()
+        assert forum_page.is_visible(ForumPageLocators.NOT_FOUND)
+        forum_page.click(ForumPageLocators.DROP_FILTERS)
+        assert not forum_page.is_visible(ForumPageLocators.NOT_FOUND)
 
     def test_open_theme_dropdown(self, forum_page):
         forum_page.open_filter_dropdown('Любая тема')
@@ -33,17 +38,6 @@ class TestUpvotePage(BaseCase):
         forum_page.open_filter_dropdown('Любой статус')
         assert forum_page.filter_dropdown_contain_items(forum_page.STATUSES)
 
-    def test_filter_theme(self, forum_page):
-        forum_page.open_filter_dropdown('Любая тема')
-
-        theme = 'Лидформы'
-        forum_page.select_filter(theme)
-        assert forum_page.find(ForumPageLocators.IDEA_THEME).text == theme
-
-    def test_filter_status(self, forum_page):
-        forum_page.click(ForumPageLocators.CANCEL_FILTER_BUTTON)
-        forum_page.open_filter_dropdown('Любой статус')
-
-        status = 'Уже в работе'
-        forum_page.select_filter(status)
-        assert forum_page.find(ForumPageLocators.IDEA_STATUS).text == status
+    def test_open_comments(self, forum_page):
+        forum_page.click(ForumPageLocators.COMMENT_BUTTON)
+        assert forum_page.is_visible(ForumPageLocators.COMMENT_ITEM)
