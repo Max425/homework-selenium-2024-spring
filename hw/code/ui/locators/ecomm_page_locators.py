@@ -5,8 +5,6 @@ class EcommPageLocators():
     CANCEL_EDUCATION = (By.XPATH, "//*[contains(@class, 'vkuiButton__content') and text()='Не сейчас']")
     CREATE_CATALOG_HEADER = (By.XPATH, f"//*[contains(@class, 'ModalSidebarPage_header__kW4ug')]//h2[contains(@class, 'vkuiTypography vkuiTypography--normalize vkuiTypography--weight-2 ModalSidebarPage_title__Uu-FC vkuiTitle--level-2')]")
     MODAL_OF_NEW_CATALOG = (By.XPATH, "//*[contains(@class, 'ModalRoot_componentWrapper__uzHTL')]")
-
-    CROSS = (By.XPATH, "//*[contains(@class, 'CloseButton_iconWrapper__SXebc')]")
     
     CATALOG_NAME_INPUT = (By.XPATH, f"//*[@data-testid='catalogName-input']")
     CATALOG_NAME_HEADER = (By.XPATH, f"//*[contains(@class, 'vkuiFormItem vkuiFormItem--withPadding vkuiInternalFormItem vkuiFormItem--sizeY-none vkuiInternalFormItem--sizeY-none vkuiFormItem--withTop vkuiInternalFormItem--withTop')]//span[contains(@class, 'FormItem_topText__cD8oZ')]")

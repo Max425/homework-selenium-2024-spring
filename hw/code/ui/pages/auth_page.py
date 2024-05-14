@@ -10,13 +10,15 @@ class AuthPage(BasePage):
     def login(self, login, password):
         self.click(AuthPageLocators.MAIL_RU_AUTH_BUTTON)
 
-        login_input = self.find(AuthPageLocators.LOGIN_FIElD)
+        login_input = self.find_clickable(AuthPageLocators.LOGIN_FIElD)
         login_input.clear()
         login_input.send_keys(login)
 
         self.click(AuthPageLocators.NEXT_BUTTON)
         time.sleep(1)
         password_input = self.find(AuthPageLocators.PASSWORD_FIELD)
+
+        password_input = self.find_clickable(AuthPageLocators.PASSWORD_FIELD)
         password_input.clear()
         password_input.send_keys(password)
 
