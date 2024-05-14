@@ -1,7 +1,4 @@
-import pytest
-
 from base_case import BaseCase
-import time
 
 
 class TestSettingsHistoryPage(BaseCase):

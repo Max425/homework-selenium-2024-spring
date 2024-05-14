@@ -21,7 +21,7 @@ class RegistrationPage(BasePage):
         self.click(RegistrationPageLocators.CHANGE_COUNTRY)
         self.click(RegistrationPageLocators.CHANGE_COUNTRY_LIST_ITEM(country))
 
-    def change_country(self, country: str):
+    def change_country_2(self, country: str):
         self.click(RegistrationPageLocators.CHANGE_COUNTRY)
         self.click(RegistrationPageLocators.CHANGE_COUNTRY_LIST_ITEM(country))
 
