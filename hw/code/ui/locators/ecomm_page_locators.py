@@ -1,7 +1,6 @@
 from selenium.webdriver.common.by import By
-from ui.locators.base_page_locators import BasePageLocators
 
-class EcommPageLocators(BasePageLocators):
+class EcommPageLocators:
     CREATE_CATALOG_COMMON_BUTTON = (By.XPATH, "//*[contains(@class, 'Catalogs_toolbar__CWsCD')]/button[contains(@class, 'vkuiButton')]")
     CREATE_CATALOG_HEADER = (By.XPATH, "//*[contains(@class, 'ModalSidebarPage_header__kW4ug')]/h2[contains(@class, 'vkuiTypography vkuiTypography--normalize vkuiTypography--weight-2 ModalSidebarPage_title__Uu-FC vkuiTitle--level-2')]")
     MODAL_OF_NEW_CATALOG = (By.XPATH, "//*[contains(@class, 'ModalRoot_componentWrapper__uzHTL')]")

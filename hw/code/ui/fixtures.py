@@ -16,6 +16,9 @@ from ui.pages.menu_page import MenuPage
 from ui.pages.header_page import HeaderPage
 from ui.pages.forum_page import ForumPage
 from ui.pages.settings_notifications_page import SettingsNotificationsPage
+from ui.pages.settings_access_page import SettingsAccessPage
+from ui.pages.settings_history_page import SettingsHistoryPage
+
 from ui.pages.ecomm_page import EcommPage
 
 LOGIN_URL = 'https://ads.vk.com/hq/registration'
@@ -142,6 +145,15 @@ def settings_notifications_page(driver, home_page):
     driver.get(SettingsNotificationsPage.url)
     return SettingsNotificationsPage(driver=driver)
 
+@pytest.fixture
+def settings_access_page(driver, home_page):
+    driver.get(SettingsAccessPage.url)
+    return SettingsAccessPage(driver=driver)
+
+@pytest.fixture
+def settings_history_page(driver, home_page):
+    driver.get(SettingsHistoryPage.url)
+    return SettingsHistoryPage(driver=driver)
 
 @pytest.fixture
 def budget_page(driver, home_page):
