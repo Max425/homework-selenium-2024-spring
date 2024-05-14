@@ -16,6 +16,7 @@ from ui.pages.menu_page import MenuPage
 from ui.pages.header_page import HeaderPage
 from ui.pages.forum_page import ForumPage
 from ui.pages.settings_notifications_page import SettingsNotificationsPage
+from ui.pages.ecomm_page import EcommPage
 
 LOGIN_URL = 'https://ads.vk.com/hq/registration'
 
@@ -156,3 +157,9 @@ def audience_page(driver, home_page):
 @pytest.fixture
 def education_page(driver, home_page):
     return EducationPage(driver=driver)
+
+@pytest.fixture
+def ecomm_page(driver, home_page):
+    driver.get(EcommPage.url)
+    return EcommPage(driver=driver)
+
