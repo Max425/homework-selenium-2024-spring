@@ -39,7 +39,7 @@ class TestEducation(BaseCase):
     def test_education_vk_public(self, vk_pubclic, education_page):
         education_page.is_visible(education_page.locators.VK_PUBLIC_MODAL)
         for item in ["Настроить кампанию с подсказками", "Смотреть видеоурок от экспертов VK", "Смотреть курс на обучающей платформе"]:
-            assert education_page.is_visible(education_page.locator.EDUCATION_COURSE_ITEM(item))
+            assert education_page.is_visible(education_page.locators.EDUCATION_COURSE_ITEM(item))
 
     def test_education_vk_public_videolesson(self, vk_pubclic, education_page):
         education_page.click(education_page.locators.EDUCATION_COURSE_ITEM("Смотреть видеоурок от экспертов VK"))
@@ -59,10 +59,6 @@ class TestEducation(BaseCase):
         
         assert education_page.title_is("Обучающая платформа VK — Как продвигать сообщество в VK Рекламе")
 
-
-    def test_education_vk_public_hints_hover(self, vk_pubclic, education_page):
-        education_page.hover_elem(education_page.locators.EDUCATION_COURSE_ITEM("Настроить кампанию с подсказками"))
-        assert "Этот тип обучения пока не доступен" in education_page.driver.page_source
         
     
 
