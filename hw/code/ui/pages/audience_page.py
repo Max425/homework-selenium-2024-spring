@@ -1,9 +1,7 @@
-from selenium.common import TimeoutException
 from selenium.webdriver import Keys
-from ui.pages.base_page import BasePage
 from selenium.webdriver.remote.webelement import WebElement
 from ui.locators.audience_page_locators import AudiencePageLocators
-from datetime import datetime
+from ui.pages.base_page import BasePage
 
 
 class AudiencePage(BasePage):

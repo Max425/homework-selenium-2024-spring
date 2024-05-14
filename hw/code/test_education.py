@@ -1,8 +1,9 @@
 import pytest
-from datetime import datetime
-from base_case import BaseCase
 from selenium.webdriver.common.by import By
-import time
+from selenium.webdriver.support import expected_conditions as EC
+
+from base_case import BaseCase
+
 
 @pytest.fixture
 def open_education_modal(education_page):
@@ -24,7 +25,7 @@ class TestEducation(BaseCase):
         assert education_page.is_visible(education_page.locators.LATER_BUTTON)
 
     def test_education_modal_closes(self, open_education_modal, education_page):
-        education_page.click((By.Id, "header"))
+        education_page.click((By.ID, "header"))
         assert education_page.education_modal_not_visible()
 
     def test_education_modal_closes_on_button(self, open_education_modal, education_page):
@@ -35,7 +36,7 @@ class TestEducation(BaseCase):
         education_page.click(education_page.locators.LATER_BUTTON)
         assert education_page.education_modal_not_visible()
 
-    def test_education_vk_public(self, vk_pubclic):
+    def test_education_vk_public(self, vk_pubclic, education_page):
         education_page.is_visible(education_page.locators.VK_PUBLIC_MODAL)
         for item in ["Настроить кампанию с подсказками", "Смотреть видеоурок от экспертов VK", "Смотреть курс на обучающей платформе"]:
             assert education_page.is_visible(education_page.locator.EDUCATION_COURSE_ITEM(item))
@@ -45,7 +46,7 @@ class TestEducation(BaseCase):
         assert education_page.is_visible(education_page.locators.VIDEO_PLAYER)
 
     def test_education_vk_public_learning_platform(self, vk_pubclic, education_page):
-        original_window = driver.current_window_handle
+        original_window = self.driver.current_window_handle
         education_page.click(education_page.locators.EDUCATION_COURSE_ITEM("Смотреть курс на обучающей платформе"))
         education_page.wait().until(EC.number_of_windows_to_be(2))
 

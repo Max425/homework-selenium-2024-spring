@@ -1,6 +1,6 @@
 import os
 
-from hw.code.ui.pages.settings_common_page import SettingsCommonPage
+from ui.pages.settings_common_page import SettingsCommonPage
 import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
@@ -19,8 +19,6 @@ from ui.pages.forum_page import ForumPage
 from ui.pages.settings_notifications_page import SettingsNotificationsPage
 from ui.pages.settings_access_page import SettingsAccessPage
 from ui.pages.settings_history_page import SettingsHistoryPage
-
-from ui.pages.ecomm_page import EcommPage
 
 LOGIN_URL = 'https://ads.vk.com/hq/registration'
 
@@ -101,8 +99,7 @@ def credentials():
 
 @pytest.fixture(scope='session')
 def credentials_without_login():
-    load_dotenv()
-    return os.getenv('LOGIN_WITHOUT_CABINET'), os.getenv('PASSWORD_WITHOUT_CABINET')
+    return "", ""
 
 
 @pytest.fixture
@@ -170,11 +167,6 @@ def audience_page(driver, home_page):
 @pytest.fixture
 def education_page(driver, home_page):
     return EducationPage(driver=driver)
-
-@pytest.fixture
-def ecomm_page(driver, home_page):
-    driver.get(EcommPage.url)
-    return EcommPage(driver=driver)
 
 @pytest.fixture
 def settings_common_page(driver, home_page):

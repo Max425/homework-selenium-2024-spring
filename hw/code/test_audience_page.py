@@ -1,7 +1,6 @@
 import pytest
 from datetime import datetime
 from base_case import BaseCase
-import time
 
 KEY_PHRASES_SOURCE = 'Ключевые фразы'
 DEFAULT_AUDIENCE_NAME = 'Аудитория ' + datetime.now().strftime('%Y-%m-%d')
