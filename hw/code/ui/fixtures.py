@@ -10,6 +10,7 @@ from ui.pages.main_page import MainPage
 from ui.pages.audience_page import AudiencePage
 from dotenv import load_dotenv
 from ui.pages.auth_page import AuthPage
+from ui.pages.education_page import EducationPage
 from ui.pages.money_page import MoneyPage
 from ui.pages.menu_page import MenuPage
 from ui.pages.header_page import HeaderPage
@@ -151,3 +152,7 @@ def budget_page(driver, home_page):
 def audience_page(driver, home_page):
     driver.get(AudiencePage.url)
     return AudiencePage(driver=driver)
+
+@pytest.fixture
+def education_page(driver, home_page):
+    return EducationPage(driver=driver)

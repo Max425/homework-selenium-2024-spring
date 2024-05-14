@@ -1,5 +1,5 @@
 from ui.pages.base_page import BasePage
-from hw.code.ui.locators.settings_notifications_page_locators import SettingsNotificationsPageLocators
+from ui.locators.settings_notifications_page_locators import SettingsNotificationsPageLocators
 
 
 class SettingsNotificationsPage(BasePage):
