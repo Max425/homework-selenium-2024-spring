@@ -15,20 +15,20 @@ class BudgetPage(BasePage):
     def get_replenishment_modal(self):
         return self.find(self.locators.REPLENISHMENT_MODAL)
 
-    def enter_amount(self, amount: str | int):
+    def enter_amount(self, amount):
         amount_input = self.find(self.locators.AMOUNT_INPUT)
         amount_input.clear()
         amount_input.send_keys(amount)
 
-    def get_amount_value(self) -> str | None:
+    def get_amount_value(self):
         return self.find(self.locators.AMOUNT_INPUT).get_attribute('value')
 
-    def enter_amount_without_vat(self, amount: str | int):
+    def enter_amount_without_vat(self, amount):
         amount_without_vat_input = self.find(self.locators.AMOUNT_WITHOUT_VAT_INPUT)
         amount_without_vat_input.clear()
         amount_without_vat_input.send_keys(amount)
 
-    def get_amount_without_vat_value(self) -> str | None:
+    def get_amount_without_vat_value(self):
         return self.find(self.locators.AMOUNT_WITHOUT_VAT_INPUT).get_attribute('value')
 
     def get_error_message(self) -> str:

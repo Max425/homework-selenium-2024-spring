@@ -27,3 +27,5 @@ class TestSettingsNotificationsPage(BaseCase):
         assert settings_notifications_page.is_save_button_enabled()
         settings_notifications_page.click_save_button()
 
+    def test
+
