@@ -19,6 +19,7 @@ from ui.pages.forum_page import ForumPage
 from ui.pages.settings_notifications_page import SettingsNotificationsPage
 from ui.pages.settings_access_page import SettingsAccessPage
 from ui.pages.settings_history_page import SettingsHistoryPage
+from ui.pages.ecomm_page import EcommPage
 
 LOGIN_URL = 'https://ads.vk.com/hq/registration'
 
@@ -99,7 +100,8 @@ def credentials():
 
 @pytest.fixture(scope='session')
 def credentials_without_login():
-    return "", ""
+    load_dotenv()
+    return os.getenv('LOGIN_WITHOUT_CABINET'), os.getenv('PASSWORD_WITHOUT_CABINET')
 
 
 @pytest.fixture
@@ -173,3 +175,7 @@ def settings_common_page(driver, home_page):
     driver.get(SettingsCommonPage.url)
     return SettingsCommonPage(driver=driver)
 
+@pytest.fixture
+def ecomm_page(driver, home_page):
+    driver.get(EcommPage.url)
+    return EcommPage(driver=driver)
