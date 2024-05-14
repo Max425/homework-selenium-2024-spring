@@ -1,6 +1,6 @@
 import os
 
-from hw.code.ui.pages.settings_common_page import SettingsCommonPage
+from ui.pages.settings_common_page import SettingsCommonPage
 import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
