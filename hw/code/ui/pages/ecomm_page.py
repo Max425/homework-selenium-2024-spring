@@ -23,7 +23,7 @@ class EcommPage(BasePage):
         return self.is_visible(self.locators.MODAL_OF_NEW_CATALOG)
     
     def enter_catalog_name(self, name: str):
-        amount_input = self.find(self.locators.PHONE_INPUT)
+        amount_input = self.find(self.locators.CATALOG_NAME_INPUT)
         amount_input.clear()
         amount_input.send_keys(name)
 

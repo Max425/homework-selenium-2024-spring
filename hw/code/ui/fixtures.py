@@ -1,5 +1,6 @@
 import os
 
+from hw.code.ui.pages.settings_common_page import SettingsCommonPage
 import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
@@ -174,4 +175,9 @@ def education_page(driver, home_page):
 def ecomm_page(driver, home_page):
     driver.get(EcommPage.url)
     return EcommPage(driver=driver)
+
+@pytest.fixture
+def settings_common_page(driver, home_page):
+    driver.get(SettingsCommonPage.url)
+    return SettingsCommonPage(driver=driver)
 
