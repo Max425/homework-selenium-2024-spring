@@ -10,6 +10,7 @@ class TestEcommPage(BaseCase):
         time.sleep(1)
         ecomm_page.create_new_catalog()
         assert ecomm_page.new_catalog_modal_page_became_visible()
+        
     def test_open_modal(self, ecomm_page):
         ecomm_page.cancel_education()
         time.sleep(1)
@@ -69,17 +70,6 @@ class TestEcommPage(BaseCase):
         ecomm_page.finish_creating_catalog()
         assert ecomm_page.get_error_text() == 'Неверный статус HTTP-запроса'
 
-    def test_incorrect_feed_url_valid_url_send(self, ecomm_page):
-        ecomm_page.cancel_education()
-        time.sleep(1)
-        ecomm_page.create_new_catalog()
-        ecomm_page.add_position_feed_or_comunity()
-        ecomm_page.enter_url('https://vk.com/ksnlkkslnk')
-        time.sleep(1)
-        ecomm_page.finish_creating_catalog()
-        time.sleep(5)
-        assert ecomm_page.new_catalog_modal_page_became_invisible() == False
-    
     def test_empty_marketplace_url(self, ecomm_page):
         ecomm_page.cancel_education()
         time.sleep(1)
@@ -142,6 +132,16 @@ class TestEcommPage(BaseCase):
         ecomm_page.change_good_category()
         assert ecomm_page.get_choosed_good_category() == 'Скачать шаблон фида "Авто"'
 
-
+    def test_correct_feed_url_valid_url_send(self, ecomm_page):
+        ecomm_page.cancel_education()
+        time.sleep(1)
+        ecomm_page.create_new_catalog()
+        ecomm_page.add_position_feed_or_comunity()
+        ecomm_page.enter_url('https://vk.com/ksnlkkslnk')
+        time.sleep(1)
+        ecomm_page.finish_creating_catalog()
+        time.sleep(5)
+        assert ecomm_page.new_catalog_modal_page_became_invisible() == False
+    
     
     
