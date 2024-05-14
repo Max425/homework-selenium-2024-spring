@@ -15,8 +15,5 @@ class ForumPage(BasePage):
     def open_filter_dropdown(self, filter_name):
         self.click(ForumPageLocators.SELECTED_FILTER(filter_name))
 
-    def select_filter(self, option_name):
-        self.click(ForumPageLocators.FILTER_OPTION(option_name))
-
     def filter_dropdown_contain_items(self, item_names):
         return all(self.find(ForumPageLocators.FILTER_OPTION(item_name)) for item_name in item_names)

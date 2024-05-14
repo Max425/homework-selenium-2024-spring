@@ -26,21 +26,12 @@ class TestMainPage(BaseCase):
         main_page.click(MainPageLocators.SEE_ALL_LINK)
         assert self.is_opened('https://ads.vk.com/cases')
 
-    @pytest.mark.skip(reason="работает только в crome")
     def test_teach_web(self, main_page):
         assert main_page.find(MainPageLocators.TEACH_WEB_TITLE).text == 'Обучающие вебинары'
         assert main_page.find(MainPageLocators.TEACH_WEB_SUBTITLE).text == 'Эксперты VK и наши партнеры рассказывают, как эффективно использовать технологии VK Рекламы'
         main_page.scroll_and_click(MainPageLocators.TEACH_WEB_BUTTON)
         assert self.is_opened('https://ads.vk.com/events')
 
-    @pytest.mark.skip(reason="работает только в хроме почему-то")
-    def test_teach_web(self, main_page):
-        assert main_page.find(MainPageLocators.TEACH_WEB_TITLE).text == 'Обучающие вебинары'
-        assert main_page.find(MainPageLocators.TEACH_WEB_SUBTITLE).text == 'Эксперты VK и наши партнеры рассказывают, как эффективно использовать технологии VK Рекламы'
-        main_page.scroll_and_click(MainPageLocators.TEACH_WEB_BUTTON)
-        assert self.is_opened('https://ads.vk.com/events')
-
-    @pytest.mark.skip(reason="работает только в хроме почему-то")
     def test_news_section(self, main_page):
         assert main_page.find(MainPageLocators.NEWS_SECTION).text == 'Новости'
         assert main_page.find(MainPageLocators.NEWS_TITLE).text == 'Составляйте портрет аудитории сайта в VK Рекламе'

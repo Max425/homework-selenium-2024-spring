@@ -1,9 +1,15 @@
 import time
-import pytest
+
 from base_case import BaseCase
+
 
 class TestEcommPage(BaseCase):
 
+    def test_open_modal(self, ecomm_page):
+        ecomm_page.cancel_education()
+        time.sleep(1)
+        ecomm_page.create_new_catalog()
+        assert ecomm_page.new_catalog_modal_page_became_visible()
     def test_open_modal(self, ecomm_page):
         ecomm_page.cancel_education()
         time.sleep(1)
