@@ -33,7 +33,7 @@ class SettingsCommonPage(BasePage):
         input.send_keys(inn)
 
     def enter_name(self, name: str):
-        input = self.find(SettingsCommonPageLocators.INN_INPUT)
+        input = self.find(SettingsCommonPageLocators.NAME_INPUT)
         input.clear()
         input.send_keys(name)
 
