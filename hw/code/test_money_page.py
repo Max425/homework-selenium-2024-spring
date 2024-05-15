@@ -1,23 +1,19 @@
-import time
-
 from base_case import BaseCase
-from ui.locators.money_page_locators import MoneyPageLocators
 
 
 class TestMoneyPage(BaseCase):
 
     def test_content(self, money_page):
-        assert money_page.find(MoneyPageLocators.TITLE).text == 'Зарабатывайте на вашем контенте'
-        assert money_page.find(
-            MoneyPageLocators.SUBTITLE).text == 'Вы вкладываете много сил в развитие вашего продукта — сайта или приложения. Рекламная сеть VK поможет вам получать от него прибыль.'
+        assert money_page.title_text() == 'Зарабатывайте на вашем контенте'
+        assert money_page.subtitle_text() == 'Вы вкладываете много сил в развитие вашего продукта — сайта или приложения. Рекламная сеть VK поможет вам получать от него прибыль.'
 
     def test_auth_btn(self, money_page):
-        money_page.click(MoneyPageLocators.CABINET_BUTTON)
+        money_page.cabinet_btn_click()
         money_page.go_to_new_tab()
         assert self.is_opened('https://id.vk.com/auth')
 
     def test_help_btn(self, money_page):
-        money_page.click(MoneyPageLocators.HELP_BUTTON)
+        money_page.help_btn_click()
         money_page.go_to_new_tab()
         assert self.is_opened('https://ads.vk.com/help')
 
@@ -25,10 +21,10 @@ class TestMoneyPage(BaseCase):
         assert money_page.page_contain_goods(money_page.GOODS)
 
     def test_formats(self, money_page):
-        money_page.scroll_and_click(MoneyPageLocators.APP_BUTTON)
+        money_page.app_btn_click()
         assert money_page.page_contain_formats(money_page.APP_FORMATS)
 
-        money_page.scroll_and_click(MoneyPageLocators.SITE_BUTTON)
+        money_page.site_btn_click()
         assert money_page.page_contain_formats(money_page.WEBSITE_FORMATS)
 
     def test_submit_button_disabled_if_form_not_valid(self, money_page):
@@ -43,5 +39,5 @@ class TestMoneyPage(BaseCase):
 
     def test_submit_message_after_submitting_form(self, money_page):
         money_page.enter_name_and_email('test', 'test')
-        money_page.scroll_and_click(MoneyPageLocators.SUBMIT_BUTTON)
-        assert money_page.is_visible(MoneyPageLocators.SUBMIT_MESSAGE)
+        money_page.submit_btn_click()
+        assert money_page.submit_message_visible()
