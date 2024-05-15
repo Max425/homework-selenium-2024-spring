@@ -1,8 +1,7 @@
-import time
+from selenium.webdriver.support.wait import WebDriverWait
 
 from base_case import BaseCase
 from ui.fixtures import driver
-from selenium.webdriver.support.wait import WebDriverWait
 
 
 class TestEcommPage(BaseCase):

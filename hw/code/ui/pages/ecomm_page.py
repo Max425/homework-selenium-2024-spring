@@ -1,6 +1,5 @@
-from ui.pages.base_page import BasePage
 from ui.locators.ecomm_page_locators import EcommPageLocators
-from selenium.webdriver.support.ui import Select
+from ui.pages.base_page import BasePage
 
 
 class EcommPage(BasePage):

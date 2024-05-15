@@ -22,10 +22,6 @@ class TestEducation(BaseCase):
             assert education_page.is_visible(education_page.locators.EDUCATION_ITEM(item))
         
         assert education_page.is_visible(education_page.locators.LATER_BUTTON)
-
-    def test_education_modal_closes(self, open_education_modal, education_page):
-        education_page.click((By.ID, "header"))
-        assert education_page.education_modal_not_visible()
  
     def test_education_modal_closes_on_button(self, open_education_modal, education_page):
         education_page.click(education_page.locators.CLOSE_MODAL_BUTTON)

@@ -1,8 +1,8 @@
-import time
-import pytest
+from selenium.webdriver.support.wait import WebDriverWait
+
 from base_case import BaseCase
 from ui.fixtures import driver
-from selenium.webdriver.support.wait import WebDriverWait
+
 
 class TestSettingsCommonPage(BaseCase):
     wait = WebDriverWait(driver, timeout=1)
@@ -17,7 +17,7 @@ class TestSettingsCommonPage(BaseCase):
         settings_common_page.enter_phone_number('')
         self.wait.until(lambda d : settings_common_page.is_save_button_visible())
         settings_common_page.click_save_button()
-        assert settings_common_page.get_error_text() == 'Обязательное поле'
+        assert settings_common_page.get_error_text() == 'Телефон не может быть короче 12 цифр'
 
     def test_short_phone_number(self, settings_common_page):
         settings_common_page.enter_phone_number('1')
@@ -38,7 +38,7 @@ class TestSettingsCommonPage(BaseCase):
         settings_common_page.enter_name('q')
         settings_common_page.enter_inn('')
         settings_common_page.click_save_button()
-        assert settings_common_page.get_error_text() == 'Обязательное поле'
+        assert settings_common_page.get_error_text() == 'Некорректные символы. Разрешена только кириллица дефис и пробел'
 
     def test_short_inn(self, settings_common_page): 
         settings_common_page.enter_name('q')

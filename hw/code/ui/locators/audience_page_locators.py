@@ -19,7 +19,7 @@ class AudiencePageLocators:
 
     @staticmethod
     def SOURCE_ITEM(item_name):
-        return (By.XPATH, f"//*[contains(@class, 'SourceTypeSelector_button__')]//*[text()='{item_name}']")
+        return By.XPATH, f"//*[contains(@class, 'SourceTypeSelector_button__')]//*[text()='{item_name}']"
 
     KEY_PHRASES_INPUT = (By.XPATH, "//*[contains(@class, 'KeyPhrases_textarea__')]/textarea")
 
@@ -33,8 +33,8 @@ class AudiencePageLocators:
 
     @staticmethod
     def MODAL_FIELD(label):
-        return (By.XPATH, f"//div[contains(h5, '{label}')]//textarea")
+        return By.XPATH, f"//div[contains(h5, '{label}')]//textarea"
     
     @staticmethod
     def MODAL_INPUT(label):
-        return (By.XPATH, f"//div[contains(h5, '{label}')]//input[contains(@class, 'vkuiTypography')]")
+        return By.XPATH, f"//div[contains(h5, '{label}')]//input[contains(@class, 'vkuiTypography')]"

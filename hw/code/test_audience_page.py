@@ -1,5 +1,4 @@
 import pytest
-from datetime import datetime
 from base_case import BaseCase
 
 KEY_PHRASES_SOURCE = 'Ключевые фразы'
