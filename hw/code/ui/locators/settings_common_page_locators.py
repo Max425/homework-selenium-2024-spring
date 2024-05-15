@@ -18,7 +18,7 @@ class SettingsCommonPageLocators:
     ADD_API = (By.XPATH, "//*[contains(@class, 'vkuiTypography') and text()='Запросить доступ к API']")
     ADDIING_API_MODAL = (By.XPATH, "//*[contains(@class, 'vkuiModalPage__in-wrap')]")
 
-    CANSEL_ADDING_EMAIL = (By.XPATH, f"//*[aria-label='Удалить']")
+    CANSEL_ADDING_EMAIL = (By.XPATH, f"//*[@aria-label='Удалить']")
 
     ERROR_MESSAGE = (By.XPATH, "//*[@role='alert']")
     

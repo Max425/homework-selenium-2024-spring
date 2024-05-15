@@ -24,3 +24,4 @@ class AuthPage(BasePage):
 
         self.click(self.locators.SUBMIT_BUTTON)
         self.find(locator=(By.ID, "header")) # ждем рендера страницы
+        
