@@ -8,12 +8,35 @@ class ForumPage(BasePage):
     THEMES = ['Лидформы', 'Сообщества', 'Форум идей', 'Сайты', 'Каталог товаров', 'Мобильные приложения', 'Другое']
     STATUSES = ['Голосование', 'Уже в работе', 'Реализована', 'Отклонено']
 
-    def get_first_idea_id(self):
-        date_and_id = self.find(ForumPageLocators.IDEA_DATE_AND_ID).text.split()
-        return date_and_id[len(date_and_id) - 1]
+    def check_title(self):
+        return self.find(ForumPageLocators.TITLE).text
+
+    def check_subtitle(self):
+        return self.find(ForumPageLocators.SUBTITLE).text
+
 
     def open_filter_dropdown(self, filter_name):
         self.click(ForumPageLocators.SELECTED_FILTER(filter_name))
 
     def filter_dropdown_contain_items(self, item_names):
         return all(self.find(ForumPageLocators.FILTER_OPTION(item_name)) for item_name in item_names)
+
+    def is_visible_nf(self):
+        return self.is_visible(ForumPageLocators.NOT_FOUND)
+
+    def fill_search(self, val):
+        return self.fill_field(ForumPageLocators.SEARCH_FIELD, val)
+
+    def wait_nf(self):
+        return self.find(ForumPageLocators.NOT_FOUND)
+
+    def click_drop_filtres(self):
+        return self.click(ForumPageLocators.DROP_FILTERS)
+
+    def open_comments(self):
+        self.click(ForumPageLocators.COMMENT_BUTTON)
+        return self.is_visible(ForumPageLocators.COMMENT_ITEM)
+
+    def open_status_dropdown(self):
+        self.click(ForumPageLocators.CANCEL_FILTER_BUTTON)
+        self.open_filter_dropdown('Любой статус')

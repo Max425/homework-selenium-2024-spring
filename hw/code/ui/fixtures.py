@@ -35,7 +35,7 @@ def driver(config):
     if selenoid:
         capabilities = {
             'browserName': 'chrome',
-            'version': '118.0',
+            'version': '124.0',
         }
         if vnc:
             capabilities['enableVNC'] = True

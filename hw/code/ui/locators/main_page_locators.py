@@ -6,7 +6,7 @@ class MainPageLocators:
     CABINET_BUTTON = (By.XPATH, "//*[contains(@class, 'NavigationVKAds_right__')]/a[contains(@class, 'ButtonCabinet_primary__')]")
     HEADER_HELP = (By.XPATH, f"//*[contains(@class, 'NavigationVKAdsItem_') and text()='Справка']")
     NEWS_LINK = (By.XPATH, f"//*[contains(@class, 'NavigationVKAdsItem_') and text()='Новости']")
-    CASES_LINK = (By.XPATH, f"//*[contains(@class, 'NavigationVKAdsItem_') and text()='Кейсы']")
+    CASES_LINK = (By.XPATH, f"//*[contains(@class, 'NavigationVKAdsItem_link__') and text()='Кейсы']")
     FORUM_LINK = (By.XPATH, f"//*[contains(@class, 'NavigationVKAdsItem_') and text()='Форум идей']")
     MONEY_LINK = (By.XPATH, f"//*[contains(@class, 'NavigationVKAdsItem_') and text()='Монетизация']")
     VK_ADS_LOGO = (By.XPATH, "//*[contains(@class, 'HeaderLeft_home')]")
