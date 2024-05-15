@@ -21,3 +21,27 @@ class MoneyPage(BasePage):
     def enter_name_and_email(self, name, email):
         self.fill_field(MoneyPageLocators.NAME_INPUT, name)
         self.fill_field(MoneyPageLocators.EMAIL_INPUT, email)
+
+    def title_text(self):
+        return self.find(MoneyPageLocators.TITLE).text
+
+    def subtitle_text(self):
+        return self.find(MoneyPageLocators.SUBTITLE).text
+
+    def cabinet_btn_click(self):
+        return self.click(MoneyPageLocators.CABINET_BUTTON)
+
+    def help_btn_click(self):
+        return self.click(MoneyPageLocators.HELP_BUTTON)
+
+    def app_btn_click(self):
+        return self.scroll_and_click(MoneyPageLocators.APP_BUTTON)
+
+    def site_btn_click(self):
+        return self.scroll_and_click(MoneyPageLocators.SITE_BUTTON)
+
+    def submit_btn_click(self):
+        return self.scroll_and_click(MoneyPageLocators.SUBMIT_BUTTON)
+
+    def submit_message_visible(self):
+        return self.is_visible(MoneyPageLocators.SUBMIT_MESSAGE)
