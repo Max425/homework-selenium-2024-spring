@@ -4,8 +4,6 @@ from base_case import BaseCase
 class TestBudgetPage(BaseCase):
     MIN_AMOUNT = 600
     MIN_AMOUNT_WITHOUT_VAT = 500
-    CORRECT_AMOUNT = 800
-    CORRECT_AMOUNT_WITH_VAT = 960
     RUBLE_END = " ₽"
 
     AMOUNT_FIELD_TITLE = "Cумма к оплате"
@@ -22,15 +20,15 @@ class TestBudgetPage(BaseCase):
 
     def test_correct_amount(self, budget_page):
         budget_page.click_replenish_budget_button()
-        budget_page.enter_amount(self.CORRECT_AMOUNT_WITH_VAT)
-        assert str(self.CORRECT_AMOUNT) + self.RUBLE_END == budget_page.get_amount_without_vat_value()
+        budget_page.enter_amount(self.MIN_AMOUNT)
+        assert str(self.MIN_AMOUNT_WITHOUT_VAT) + self.RUBLE_END == budget_page.get_amount_without_vat_value()
         budget_page.click_submit_button()
         assert budget_page.vkpay_iframe_visible()
 
     def test_correct_amount_without_vat(self, budget_page):
         budget_page.click_replenish_budget_button()
-        budget_page.enter_amount_without_vat(self.CORRECT_AMOUNT)
-        assert str(self.CORRECT_AMOUNT_WITH_VAT) + self.RUBLE_END == budget_page.get_amount_value()
+        budget_page.enter_amount_without_vat(self.MIN_AMOUNT_WITHOUT_VAT)
+        assert str(self.MIN_AMOUNT) + self.RUBLE_END == budget_page.get_amount_value()
         budget_page.click_submit_button()
         assert budget_page.vkpay_iframe_visible()
         

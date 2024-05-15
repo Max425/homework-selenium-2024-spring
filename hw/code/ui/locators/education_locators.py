@@ -20,4 +20,4 @@ class EducationLocators:
 
     CLOSE_MODAL_BUTTON = (By.XPATH, "//*[@aria-label='Закрыть']")
 
-    VIDEO_PLAYER = (By.CSS_SELECTOR, ".videoplayer_media")
+    VIDEO_PLAYER = (By.XPATH, "//iframe[contains(@class, 'VideoOnboardingModal_frame__')]")

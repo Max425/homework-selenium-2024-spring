@@ -37,4 +37,4 @@ class AudiencePageLocators:
     
     @staticmethod
     def MODAL_INPUT(label):
-        return (By.XPATH, f"//div[contains(h5, '{label}')]//input")
+        return (By.XPATH, f"//div[contains(h5, '{label}')]//input[contains(@class, 'vkuiTypography')]")
