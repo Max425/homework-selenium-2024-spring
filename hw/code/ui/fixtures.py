@@ -1,25 +1,24 @@
 import os
 
-from ui.pages.settings_common_page import SettingsCommonPage
 import pytest
-from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
-from ui.pages.registration_page import RegistrationPage
-from ui.pages.home_page import HomePage
-from ui.pages.budget_page import BudgetPage
-from ui.pages.main_page import MainPage
-from ui.pages.audience_page import AudiencePage
 from dotenv import load_dotenv
+from selenium import webdriver
+from ui.pages.audience_page import AudiencePage
 from ui.pages.auth_page import AuthPage
-from ui.pages.education_page import EducationPage
-from ui.pages.money_page import MoneyPage
-from ui.pages.menu_page import MenuPage
-from ui.pages.header_page import HeaderPage
-from ui.pages.forum_page import ForumPage
-from ui.pages.settings_notifications_page import SettingsNotificationsPage
-from ui.pages.settings_access_page import SettingsAccessPage
-from ui.pages.settings_history_page import SettingsHistoryPage
+from ui.pages.budget_page import BudgetPage
 from ui.pages.ecomm_page import EcommPage
+from ui.pages.education_page import EducationPage
+from ui.pages.forum_page import ForumPage
+from ui.pages.header_page import HeaderPage
+from ui.pages.home_page import HomePage
+from ui.pages.main_page import MainPage
+from ui.pages.menu_page import MenuPage
+from ui.pages.money_page import MoneyPage
+from ui.pages.registration_page import RegistrationPage
+from ui.pages.settings_access_page import SettingsAccessPage
+from ui.pages.settings_common_page import SettingsCommonPage
+from ui.pages.settings_history_page import SettingsHistoryPage
+from ui.pages.settings_notifications_page import SettingsNotificationsPage
 
 LOGIN_URL = 'https://ads.vk.com/hq/registration'
 
@@ -28,22 +27,7 @@ LOGIN_URL = 'https://ads.vk.com/hq/registration'
 def driver(config):
     browser = config['browser']
     url = config['url']
-    selenoid = config['selenoid']
-    vnc = config['vnc']
-    options = Options()
-    options.add_argument("window-size=1200x600")
-    if selenoid:
-        capabilities = {
-            'browserName': 'chrome',
-            'version': '124.0',
-        }
-        if vnc:
-            capabilities['enableVNC'] = True
-        driver = webdriver.Remote(
-            'http://127.0.0.1:4444/wd/hub',
-            options=options,
-        )
-    elif browser == 'chrome':
+    if browser == 'chrome':
         driver = webdriver.Chrome()
     elif browser == 'firefox':
         driver = webdriver.Firefox()
