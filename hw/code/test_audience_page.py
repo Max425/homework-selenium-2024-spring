@@ -1,5 +1,5 @@
 import pytest
-from datetime import datetime
+import time
 from base_case import BaseCase
 
 KEY_PHRASES_SOURCE = 'Ключевые фразы'
@@ -47,3 +47,8 @@ class TestAudiencePage(BaseCase):
         assert audience_page.is_submit_button_enabled()
         audience_page.click_submit_button()
         assert "Обязательное поле" == audience_page.get_error_text()
+
+    def test_add_source_by_key_phrases_incorrect_period(self, key_phrases_source, audience_page):
+        audience_page.fill_period_input('0')
+        time.sleep(1)   # sleep это часть теста
+        assert audience_page.get_period_input_value() == "1"
