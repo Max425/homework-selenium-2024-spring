@@ -16,7 +16,7 @@ def key_phrases_source(create_audience_modal_page, audience_page):
     audience_page.select_source(KEY_PHRASES_SOURCE)
 
 
-class TestAudiencePage(BaseCase):  
+class TestAudiencePage(BaseCase):
     def test_create_audience_modal_opens(self, audience_page):
         audience_page.click_create_audience_button()
         assert audience_page.is_create_audience_modal_visible()
@@ -25,7 +25,8 @@ class TestAudiencePage(BaseCase):
     def test_add_source_modal_opens(self, create_audience_modal_page, audience_page):
         audience_page.click_add_source_button()
         assert audience_page.is_add_source_modal_visible()
-        for source in ["Существующая аудитория", "Список пользователей", "Ключевые фразы", "События в рекламной кампании"]:
+        for source in ["Существующая аудитория", "Список пользователей", "Ключевые фразы",
+                       "События в рекламной кампании"]:
             assert audience_page.is_source_select_button_visible(source)
 
     def test_key_pharases_opens(self, create_audience_modal_page, audience_page):

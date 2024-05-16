@@ -31,7 +31,7 @@ class TestBudgetPage(BaseCase):
         assert str(self.MIN_AMOUNT) + self.RUBLE_END == budget_page.get_amount_value()
         budget_page.click_submit_button()
         assert budget_page.is_vkpay_iframe_visible()
-        
+
     def test_error_too_small_amount(self, budget_page):
         budget_page.click_replenish_budget_button()
         budget_page.enter_amount(self.MIN_AMOUNT - 1)

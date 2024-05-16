@@ -25,7 +25,7 @@ class SettingsHistoryPage(BasePage):
 
     def is_save_button_visible(self) -> bool:
         return self.is_visible(SettingsHistoryPageLocators.SAVE_BUTTON)
-    
+
     def click_filter_data_button(self):
         self.click(SettingsHistoryPageLocators.FILTER_DATA_BUTTON)
 

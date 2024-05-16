@@ -65,20 +65,20 @@ class AudiencePage(BasePage):
 
     def get_created_audience_title(self) -> str:
         return self.find(self.locators.CREATED_AUDIENCE_TITLE).text
-    
-    def is_add_source_button_visible(self)->bool:
+
+    def is_add_source_button_visible(self) -> bool:
         return self.is_visible(self.locators.ADD_SOURCE_BUTTON)
-    
-    def is_source_select_button_visible(self, label)->bool:
+
+    def is_source_select_button_visible(self, label) -> bool:
         return self.is_visible(self.locators.SOURCE_ITEM(label))
-    
+
     def is_modal_field_visible(self, label):
         return self.is_visible(self.locators.MODAL_FIELD(label)) or self.is_visible(self.locators.MODAL_INPUT(label))
-    
+
     def is_submit_button_enabled(self) -> bool:
         submit_button = self.find(self.locators.MODAL_SUBMIT_BUTTON)
         return submit_button.is_enabled()
-    
+
     def click_submit_button(self) -> bool:
         self.click(self.locators.MODAL_SUBMIT_BUTTON)
 

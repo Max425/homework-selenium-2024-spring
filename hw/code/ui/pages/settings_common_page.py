@@ -10,7 +10,7 @@ class SettingsCommonPage(BasePage):
 
     def is_save_button_visible(self) -> bool:
         return self.is_visible(SettingsCommonPageLocators.SAVE_BUTTON)
-    
+
     def is_save_button_enabled(self) -> bool:
         return self.find(SettingsCommonPageLocators.SAVE_BUTTON).is_enabled()
 
@@ -45,22 +45,21 @@ class SettingsCommonPage(BasePage):
 
     def is_email_input_visible(self) -> bool:
         return self.is_visible(SettingsCommonPageLocators.ADD_EMAIL_INPUT)
-    
+
     def get_error_text(self) -> str:
         return self.find(SettingsCommonPageLocators.ERROR_MESSAGE).text
-    
+
     def is_error_visible(self) -> bool:
         return self.is_visible(SettingsCommonPageLocators.ERROR_MESSAGE)
-    
+
     def click_add_my_target_button(self):
         self.click(SettingsCommonPageLocators.ADD_MY_TARGET_CABINET)
 
     def is_adding_my_target_modal_visible(self) -> bool:
         return self.is_visible(SettingsCommonPageLocators.ADDIING_MY_TARGET_MODAL)
-    
+
     def click_add_api_button(self):
         self.click(SettingsCommonPageLocators.ADD_API)
 
     def is_adding_api_modal_visible(self) -> bool:
         return self.is_visible(SettingsCommonPageLocators.ADDIING_API_MODAL)
-    

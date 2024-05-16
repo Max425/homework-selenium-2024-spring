@@ -5,11 +5,11 @@ class EcommPageLocators:
     CREATE_CATALOG_COMMON_BUTTON = (By.XPATH, f"//*[@data-testid='create-catalog']")
     CANCEL_EDUCATION = (By.XPATH, "//*[contains(@class, 'vkuiButton__content') and text()='Не сейчас']")
     MODAL_EDUCATION = (By.XPATH, "//*[contains(@class, 'vkui__portal-root')]")
-    
+
     MODAL_OF_NEW_CATALOG = (By.XPATH, "//*[contains(@class, 'ModalSidebarPage_container__Zopae')]")
 
     CATALOG_NAME_INPUT = (By.XPATH, f"//*[@data-testid='catalogName-input']")
-   
+
     FEED_OR_COMUNITY = (By.XPATH, "//*[@data-entityid='url']")
     MARKETPLACE = (By.XPATH, "//*[@data-entityid='marketplace']")
     ADD_FILE = (By.XPATH, "//*[@data-entityid='file']")
@@ -30,4 +30,3 @@ class EcommPageLocators:
     CATALOGS_TABLE = (By.XPATH, "//*[@role='table']")
 
     SPINNER_BUTTON = (By.XPATH, "//*[contains(@class, 'vkuiSpinner vkuiButton__spinner')]")
-    

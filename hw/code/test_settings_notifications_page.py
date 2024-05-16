@@ -24,10 +24,10 @@ class TestSettingsNotificationsPage(BaseCase):
         assert settings_notifications_page.is_save_button_enabled()
 
         settings_notifications_page.click_save_button()
-        self.wait.until(lambda d : settings_notifications_page.is_save_button_not_visible())
+        self.wait.until(lambda d: settings_notifications_page.is_save_button_not_visible())
         assert settings_notifications_page.is_save_button_not_visible()
 
         settings_notifications_page.click_email_checkbox()
-        self.wait.until(lambda d : settings_notifications_page.is_save_button_enabled())
+        self.wait.until(lambda d: settings_notifications_page.is_save_button_enabled())
         assert settings_notifications_page.is_save_button_enabled()
         settings_notifications_page.click_save_button()

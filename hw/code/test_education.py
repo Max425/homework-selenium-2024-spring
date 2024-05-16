@@ -9,20 +9,21 @@ from base_case import BaseCase
 def open_education_modal(education_page):
     education_page.open_education_modal()
 
+
 @pytest.fixture
 def vk_public(open_education_modal, education_page):
     education_page.click(education_page.locators.EDUCATION_ITEM("Сообщество ВКонтакте"))
 
 
-class TestEducation(BaseCase): 
+class TestEducation(BaseCase):
     def test_education_modal_opens(self, open_education_modal, education_page):
         assert education_page.is_education_modal_visible()
-        for item in ["Сообщество ВКонтакте", "Сайт", "Каталог товаров", "Мобильное приложение", 
-                    "Лид-формы", "VK Mini Apps", "Музыка", "Видео и трансляции", "Дзен"]:
+        for item in ["Сообщество ВКонтакте", "Сайт", "Каталог товаров", "Мобильное приложение",
+                     "Лид-формы", "VK Mini Apps", "Музыка", "Видео и трансляции", "Дзен"]:
             assert education_page.is_visible(education_page.locators.EDUCATION_ITEM(item))
-        
+
         assert education_page.is_visible(education_page.locators.LATER_BUTTON)
- 
+
     def test_education_modal_closes_on_button(self, open_education_modal, education_page):
         education_page.click(education_page.locators.CLOSE_MODAL_BUTTON)
         assert education_page.is_education_modal_not_visible()
@@ -30,10 +31,11 @@ class TestEducation(BaseCase):
     def test_education_modal_closes_on_later_button(self, open_education_modal, education_page):
         education_page.click(education_page.locators.LATER_BUTTON)
         assert education_page.is_education_modal_not_visible()
-  
+
     def test_education_vk_public(self, vk_public, education_page):
         education_page.is_visible(education_page.locators.VK_PUBLIC_MODAL)
-        for item in ["Настроить кампанию с подсказками", "Смотреть видеоурок от экспертов VK", "Смотреть курс на обучающей платформе"]:
+        for item in ["Настроить кампанию с подсказками", "Смотреть видеоурок от экспертов VK",
+                     "Смотреть курс на обучающей платформе"]:
             assert education_page.is_visible(education_page.locators.EDUCATION_COURSE_ITEM(item))
 
     def test_education_vk_public_videolesson(self, vk_public, education_page):
@@ -51,13 +53,5 @@ class TestEducation(BaseCase):
             if window_handle != original_window:
                 education_page.driver.switch_to.window(window_handle)
                 break
-        
+
         assert education_page.title_is("Как продвигать сообщество в VK Рекламе — курс от Обучающей платформы VK")
-        
-    
-
-
-
-    
-
-    

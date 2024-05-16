@@ -6,7 +6,7 @@ import time
 
 class AuthPage(BasePage):
     locators = AuthPageLocators()
-    
+
     def login(self, login, password):
         self.click(AuthPageLocators.MAIL_RU_AUTH_BUTTON)
 
@@ -23,5 +23,4 @@ class AuthPage(BasePage):
         password_input.send_keys(password)
 
         self.click(self.locators.SUBMIT_BUTTON)
-        self.find(locator=(By.ID, "header")) # ждем рендера страницы
-        
+        self.find(locator=(By.ID, "header"))  # ждем рендера страницы
