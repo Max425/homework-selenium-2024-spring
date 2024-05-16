@@ -6,7 +6,7 @@ class EcommPageLocators:
     CANCEL_EDUCATION = (By.XPATH, "//*[contains(@class, 'vkuiButton__content') and text()='Не сейчас']")
     MODAL_EDUCATION = (By.XPATH, "//*[contains(@class, 'vkui__portal-root')]")
     
-    MODAL_OF_NEW_CATALOG = (By.XPATH, "//*[contains(@class, 'ModalRoot_componentWrapper__uzHTL')]")
+    MODAL_OF_NEW_CATALOG = (By.XPATH, "//*[contains(@class, 'ModalSidebarPage_container__Zopae')]")
 
     CATALOG_NAME_INPUT = (By.XPATH, f"//*[@data-testid='catalogName-input']")
    
@@ -21,7 +21,7 @@ class EcommPageLocators:
 
     ERROR_MESSAGE = (By.XPATH, "//*[@role='alert']")
 
-    ADD_API_KEY = (By.XPATH, "//*[contains(@class, 'FormItem_topText__cD8oZ') and text()='API key']")
+    ADD_API_KEY = (By.XPATH, "//*[@placeholder='Введите ключ API']")
 
     GOOD_DROPDOWN = (By.XPATH, "//*[@role='combobox']")
     GOOD_AUTO = (By.XPATH, "//*[@value='auto']")

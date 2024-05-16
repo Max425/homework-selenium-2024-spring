@@ -54,7 +54,7 @@ class EcommPage(BasePage):
         amount_input.send_keys(url)
 
     def get_api_key_field(self):
-        return self.find(self.locators.ADD_API_KEY).text
+        return self.is_visible(self.locators.ADD_API_KEY)
 
     def change_good_category(self):
         self.click(self.locators.GOOD_DROPDOWN)

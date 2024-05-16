@@ -108,7 +108,8 @@ class TestEcommPage(BaseCase):
         ecomm_page.cancel_education()
         self.wait.until(lambda d : ecomm_page.is_education_modal_closed())
         ecomm_page.create_new_catalog()
+        assert not ecomm_page.get_api_key_field()
         ecomm_page.add_position_marketplace()
         ecomm_page.enter_url('https://www.wildberries.ru/brands/975102-health-body')
         ecomm_page.finish_creating_catalog()
-        assert ecomm_page.get_api_key_field() == 'API key'
+        assert ecomm_page.get_api_key_field() 
