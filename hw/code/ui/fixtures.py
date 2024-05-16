@@ -129,15 +129,18 @@ def settings_notifications_page(driver, home_page):
     driver.get(SettingsNotificationsPage.url)
     return SettingsNotificationsPage(driver=driver)
 
+
 @pytest.fixture
 def settings_access_page(driver, home_page):
     driver.get(SettingsAccessPage.url)
     return SettingsAccessPage(driver=driver)
 
+
 @pytest.fixture
 def settings_history_page(driver, home_page):
     driver.get(SettingsHistoryPage.url)
     return SettingsHistoryPage(driver=driver)
+
 
 @pytest.fixture
 def budget_page(driver, home_page):
@@ -150,14 +153,17 @@ def audience_page(driver, home_page):
     driver.get(AudiencePage.url)
     return AudiencePage(driver=driver)
 
+
 @pytest.fixture
 def education_page(driver, home_page):
     return EducationPage(driver=driver)
+
 
 @pytest.fixture
 def settings_common_page(driver, home_page):
     driver.get(SettingsCommonPage.url)
     return SettingsCommonPage(driver=driver)
+
 
 @pytest.fixture
 def ecomm_page(driver, home_page):

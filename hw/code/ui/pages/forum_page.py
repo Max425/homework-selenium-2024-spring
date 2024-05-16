@@ -14,7 +14,6 @@ class ForumPage(BasePage):
     def check_subtitle(self):
         return self.find(ForumPageLocators.SUBTITLE).text
 
-
     def open_filter_dropdown(self, filter_name):
         self.click(ForumPageLocators.SELECTED_FILTER(filter_name))
 
@@ -31,12 +30,14 @@ class ForumPage(BasePage):
         return self.find(ForumPageLocators.NOT_FOUND)
 
     def click_drop_filtres(self):
-        return self.click(ForumPageLocators.DROP_FILTERS)
+        return self.scroll_and_click(ForumPageLocators.DROP_FILTERS)
 
-    def open_comments(self):
-        self.click(ForumPageLocators.COMMENT_BUTTON)
+    def is_open_comments_visible(self):
         return self.is_visible(ForumPageLocators.COMMENT_ITEM)
 
+    def click_comment_button(self):
+        self.scroll_and_click(ForumPageLocators.COMMENT_BUTTON)
+
     def open_status_dropdown(self):
-        self.click(ForumPageLocators.CANCEL_FILTER_BUTTON)
+        self.scroll_and_click(ForumPageLocators.CANCEL_FILTER_BUTTON)
         self.open_filter_dropdown('Любой статус')

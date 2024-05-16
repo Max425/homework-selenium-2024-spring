@@ -9,7 +9,6 @@ class AudiencePageLocators:
 
     ADD_SOURCE_BUTTON = (By.XPATH, "//*[contains(@class, 'vkuiButton__content') and text()='Добавить источник']")
 
-
     @staticmethod
     def MODAL(title):
         return (
@@ -19,11 +18,12 @@ class AudiencePageLocators:
 
     @staticmethod
     def SOURCE_ITEM(item_name):
-        return (By.XPATH, f"//*[contains(@class, 'SourceTypeSelector_button__')]//*[text()='{item_name}']")
+        return By.XPATH, f"//*[contains(@class, 'SourceTypeSelector_button__')]//*[text()='{item_name}']"
 
     KEY_PHRASES_INPUT = (By.XPATH, "//*[contains(@class, 'KeyPhrases_textarea__')]/textarea")
 
-    MODAL_SUBMIT_BUTTON = (By.XPATH, "//div[contains(@class, 'ModalRoot_componentWrapper')and .//h2[text()='Ключевые фразы']]//button[@type='submit']")
+    MODAL_SUBMIT_BUTTON = (By.XPATH,
+                           "//div[contains(@class, 'ModalRoot_componentWrapper')and .//h2[text()='Ключевые фразы']]//button[@type='submit']")
     SOURCE_CARD_CONTENT = (
         By.XPATH,
         "//*[contains(@class, 'SourcesList_wrapper__')]//*[contains(@class, 'InfoRow_content__')]"
@@ -33,8 +33,8 @@ class AudiencePageLocators:
 
     @staticmethod
     def MODAL_FIELD(label):
-        return (By.XPATH, f"//div[contains(h5, '{label}')]//textarea")
-    
+        return By.XPATH, f"//div[contains(h5, '{label}')]//textarea"
+
     @staticmethod
     def MODAL_INPUT(label):
-        return (By.XPATH, f"//div[contains(h5, '{label}')]//input[contains(@class, 'vkuiTypography')]")
+        return By.XPATH, f"//div[contains(h5, '{label}')]//input[contains(@class, 'vkuiTypography')]"

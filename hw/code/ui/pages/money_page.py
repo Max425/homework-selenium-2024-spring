@@ -43,5 +43,5 @@ class MoneyPage(BasePage):
     def submit_btn_click(self):
         return self.scroll_and_click(MoneyPageLocators.SUBMIT_BUTTON)
 
-    def submit_message_visible(self):
+    def is_submit_message_visible(self):
         return self.is_visible(MoneyPageLocators.SUBMIT_MESSAGE)

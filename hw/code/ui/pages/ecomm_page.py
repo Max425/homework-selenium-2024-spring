@@ -1,6 +1,5 @@
-from ui.pages.base_page import BasePage
 from ui.locators.ecomm_page_locators import EcommPageLocators
-from selenium.webdriver.support.ui import Select
+from ui.pages.base_page import BasePage
 
 
 class EcommPage(BasePage):
@@ -19,10 +18,10 @@ class EcommPage(BasePage):
     def close(self):
         self.click(self.locators.CROSS)
 
-    def new_catalog_modal_page_became_visible(self) -> bool:
+    def is_new_catalog_modal_page_became_visible(self) -> bool:
         return self.is_visible(self.locators.MODAL_OF_NEW_CATALOG, 10)
 
-    def new_catalog_modal_page_became_invisible(self) -> bool:
+    def is_new_catalog_modal_page_became_invisible(self) -> bool:
         return not self.is_visible(self.locators.MODAL_OF_NEW_CATALOG)
 
     def enter_catalog_name(self, name: str):
@@ -54,7 +53,7 @@ class EcommPage(BasePage):
         amount_input.send_keys(url)
 
     def get_api_key_field(self):
-        return self.find(self.locators.ADD_API_KEY).text
+        return self.is_visible(self.locators.ADD_API_KEY)
 
     def change_good_category(self):
         self.click(self.locators.GOOD_DROPDOWN)

@@ -14,7 +14,7 @@ class TestBudgetPage(BaseCase):
 
     def test_open_replenishment_modal_page(self, budget_page):
         budget_page.click_replenish_budget_button()
-        assert budget_page.replenishment_modal_visible()
+        assert budget_page.is_replenishment_modal_visible()
         assert self.AMOUNT_FIELD_TITLE in self.driver.page_source
         assert self.AMOUNT_WITHOUT_VAT_FIELD_TITLE in self.driver.page_source
 
@@ -23,15 +23,15 @@ class TestBudgetPage(BaseCase):
         budget_page.enter_amount(self.MIN_AMOUNT)
         assert str(self.MIN_AMOUNT_WITHOUT_VAT) + self.RUBLE_END == budget_page.get_amount_without_vat_value()
         budget_page.click_submit_button()
-        assert budget_page.vkpay_iframe_visible()
+        assert budget_page.is_vkpay_iframe_visible()
 
     def test_correct_amount_without_vat(self, budget_page):
         budget_page.click_replenish_budget_button()
         budget_page.enter_amount_without_vat(self.MIN_AMOUNT_WITHOUT_VAT)
         assert str(self.MIN_AMOUNT) + self.RUBLE_END == budget_page.get_amount_value()
         budget_page.click_submit_button()
-        assert budget_page.vkpay_iframe_visible()
-        
+        assert budget_page.is_vkpay_iframe_visible()
+
     def test_error_too_small_amount(self, budget_page):
         budget_page.click_replenish_budget_button()
         budget_page.enter_amount(self.MIN_AMOUNT - 1)

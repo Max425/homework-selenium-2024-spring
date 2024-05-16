@@ -11,10 +11,10 @@ class EducationPage(HomePage):
     def open_education_modal(self):
         self.click(self.locators.TRAINING_BUTTON)
 
-    def education_modal_visible(self):
+    def is_education_modal_visible(self):
         return self.is_visible(self.locators.EDUCATION_MODAL)
 
-    def education_modal_not_visible(self):
+    def is_education_modal_not_visible(self):
         return self.is_invisible(self.locators.EDUCATION_MODAL)
 
     def is_two_windows(self):

@@ -22,10 +22,8 @@ class BasePage(object):
     def find_clickable(self, locator, timeout=None) -> WebElement:
         return self.wait(timeout).until(EC.element_to_be_clickable(locator))
 
-
     def click(self, locator, timeout=None):
         elem = self.find(locator, timeout=timeout)
-        # elem = self.wait(timeout).until(EC.element_to_be_clickable(locator))
         elem.click()
 
     def scroll_and_click(self, locator, timeout=None) -> WebElement:

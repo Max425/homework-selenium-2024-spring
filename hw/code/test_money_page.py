@@ -40,4 +40,4 @@ class TestMoneyPage(BaseCase):
     def test_submit_message_after_submitting_form(self, money_page):
         money_page.enter_name_and_email('test', 'test')
         money_page.submit_btn_click()
-        assert money_page.submit_message_visible()
+        assert money_page.is_submit_message_visible()

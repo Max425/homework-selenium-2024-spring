@@ -1,8 +1,8 @@
-import time
-import pytest
+from selenium.webdriver.support.wait import WebDriverWait
+
 from base_case import BaseCase
 from ui.fixtures import driver
-from selenium.webdriver.support.wait import WebDriverWait
+
 
 class TestSettingsCommonPage(BaseCase):
     wait = WebDriverWait(driver, timeout=1)
@@ -15,32 +15,32 @@ class TestSettingsCommonPage(BaseCase):
     def test_empty_phone_number(self, settings_common_page):
         settings_common_page.enter_name('q')
         settings_common_page.enter_phone_number('')
-        self.wait.until(lambda d : settings_common_page.is_save_button_visible())
+        self.wait.until(lambda d: settings_common_page.is_save_button_visible())
         settings_common_page.click_save_button()
-        assert settings_common_page.get_error_text() == 'Обязательное поле'
+        assert settings_common_page.get_error_text() == 'Телефон не может быть короче 12 цифр'
 
     def test_short_phone_number(self, settings_common_page):
         settings_common_page.enter_phone_number('1')
-        self.wait.until(lambda d : settings_common_page.is_save_button_visible())
-        self.wait.until(lambda d : settings_common_page.is_save_button_enabled())
+        self.wait.until(lambda d: settings_common_page.is_save_button_visible())
+        self.wait.until(lambda d: settings_common_page.is_save_button_enabled())
         settings_common_page.click_save_button()
         assert settings_common_page.get_error_text() == 'Некорректный номер телефона'
 
     def test_phone_number_without_plus(self, settings_common_page):
         settings_common_page.enter_phone_number('89099883947')
-        self.wait.until(lambda d : settings_common_page.is_save_button_visible())
-        self.wait.until(lambda d : settings_common_page.is_save_button_enabled())
+        self.wait.until(lambda d: settings_common_page.is_save_button_visible())
+        self.wait.until(lambda d: settings_common_page.is_save_button_enabled())
         settings_common_page.click_save_button()
         assert settings_common_page.get_error_text() == 'Некорректный номер телефона'
-    
+
     def test_empty_inn(self, settings_common_page):
         settings_common_page.enter_phone_number('+79099883947')
         settings_common_page.enter_name('q')
         settings_common_page.enter_inn('')
         settings_common_page.click_save_button()
-        assert settings_common_page.get_error_text() == 'Обязательное поле'
+        assert settings_common_page.get_error_text() == 'Некорректные символы. Разрешена только кириллица дефис и пробел'
 
-    def test_short_inn(self, settings_common_page): 
+    def test_short_inn(self, settings_common_page):
         settings_common_page.enter_name('q')
         settings_common_page.enter_phone_number('+79099883947')
         settings_common_page.enter_inn('123')
@@ -58,7 +58,7 @@ class TestSettingsCommonPage(BaseCase):
         assert not settings_common_page.is_email_input_visible()
         settings_common_page.click_add_email_button()
         assert settings_common_page.is_email_input_visible()
-    
+
     def test_add_empty_email(self, settings_common_page):
         settings_common_page.enter_phone_number('+79099883947')
         settings_common_page.enter_inn('123123123123')
@@ -67,7 +67,7 @@ class TestSettingsCommonPage(BaseCase):
         settings_common_page.enter_email('')
         settings_common_page.click_save_button()
         assert settings_common_page.get_error_text() == 'Обязательное поле'
-    
+
     def test_add_incorrect_email_without_dog(self, settings_common_page):
         settings_common_page.enter_phone_number('+79099883947')
         settings_common_page.enter_inn('123123123123')
@@ -76,7 +76,7 @@ class TestSettingsCommonPage(BaseCase):
         settings_common_page.enter_email('qwertymail.ru')
         settings_common_page.click_save_button()
         assert settings_common_page.get_error_text() == 'Некорректный email адрес'
-    
+
     def test_add_incorrect_email_without_dot(self, settings_common_page):
         settings_common_page.enter_phone_number('+79099883947')
         settings_common_page.enter_inn('123123123123')
@@ -85,7 +85,7 @@ class TestSettingsCommonPage(BaseCase):
         settings_common_page.enter_email('qwerty@mailru')
         settings_common_page.click_save_button()
         assert settings_common_page.get_error_text() == 'Некорректный email адрес'
-    
+
     def test_add_incorrect_email_with_kirillitsa(self, settings_common_page):
         settings_common_page.enter_phone_number('+79099883947')
         settings_common_page.enter_inn('123123123123')

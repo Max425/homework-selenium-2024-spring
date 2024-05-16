@@ -29,4 +29,5 @@ class TestForumPage(BaseCase):
         assert forum_page.filter_dropdown_contain_items(forum_page.STATUSES)
 
     def test_open_comments(self, forum_page):
-        assert forum_page.open_comments()
+        forum_page.click_comment_button()
+        assert forum_page.is_open_comments_visible()

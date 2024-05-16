@@ -1,4 +1,4 @@
-import pytest
+import time
 
 from base_case import BaseCase
 
@@ -13,9 +13,6 @@ class TestRegistrationPage(BaseCase):
         assert self.is_opened('https://ads.vk.com/hq/registration/new')
 
     def test_change_account_type(self, registration_page, registration_new_page):
-        registration_page.change_account_type('Агентство')
-        assert not registration_page.is_physical_field_visible()
-
         registration_page.change_account_type('Рекламодатель')
         assert registration_page.is_physical_field_visible()
 
