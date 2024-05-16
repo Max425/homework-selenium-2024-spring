@@ -18,10 +18,10 @@ class EcommPage(BasePage):
     def close(self):
         self.click(self.locators.CROSS)
 
-    def new_catalog_modal_page_became_visible(self) -> bool:
+    def is_new_catalog_modal_page_became_visible(self) -> bool:
         return self.is_visible(self.locators.MODAL_OF_NEW_CATALOG, 10)
 
-    def new_catalog_modal_page_became_invisible(self) -> bool:
+    def is_new_catalog_modal_page_became_invisible(self) -> bool:
         return not self.is_visible(self.locators.MODAL_OF_NEW_CATALOG)
 
     def enter_catalog_name(self, name: str):

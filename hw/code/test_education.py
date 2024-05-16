@@ -16,7 +16,7 @@ def vk_public(open_education_modal, education_page):
 
 class TestEducation(BaseCase): 
     def test_education_modal_opens(self, open_education_modal, education_page):
-        assert education_page.education_modal_visible()
+        assert education_page.is_education_modal_visible()
         for item in ["Сообщество ВКонтакте", "Сайт", "Каталог товаров", "Мобильное приложение", 
                     "Лид-формы", "VK Mini Apps", "Музыка", "Видео и трансляции", "Дзен"]:
             assert education_page.is_visible(education_page.locators.EDUCATION_ITEM(item))
@@ -25,11 +25,11 @@ class TestEducation(BaseCase):
  
     def test_education_modal_closes_on_button(self, open_education_modal, education_page):
         education_page.click(education_page.locators.CLOSE_MODAL_BUTTON)
-        assert education_page.education_modal_not_visible()
+        assert education_page.is_education_modal_not_visible()
 
     def test_education_modal_closes_on_later_button(self, open_education_modal, education_page):
         education_page.click(education_page.locators.LATER_BUTTON)
-        assert education_page.education_modal_not_visible()
+        assert education_page.is_education_modal_not_visible()
   
     def test_education_vk_public(self, vk_public, education_page):
         education_page.is_visible(education_page.locators.VK_PUBLIC_MODAL)

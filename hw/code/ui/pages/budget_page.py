@@ -9,7 +9,7 @@ class BudgetPage(BasePage):
     def click_replenish_budget_button(self):
         self.click(self.locators.REPLENISH_BUDGET_BUTTON, timeout=10)
 
-    def replenishment_modal_visible(self) -> bool:
+    def is_replenishment_modal_visible(self) -> bool:
         return self.is_visible(self.locators.REPLENISHMENT_MODAL)
 
     def get_replenishment_modal(self):
@@ -37,7 +37,7 @@ class BudgetPage(BasePage):
     def click_submit_button(self):
         self.click(self.locators.SUBMIT_BUTTON)
 
-    def vkpay_iframe_visible(self) -> bool:
+    def is_vkpay_iframe_visible(self) -> bool:
         return self.is_visible(self.locators.VKPAY_IFRAME, timeout=10)
 
     def get_vkpay_iframe(self):

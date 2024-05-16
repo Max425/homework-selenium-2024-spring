@@ -33,9 +33,11 @@ class ForumPage(BasePage):
     def click_drop_filtres(self):
         return self.scroll_and_click(ForumPageLocators.DROP_FILTERS)
 
-    def open_comments(self):
-        self.scroll_and_click(ForumPageLocators.COMMENT_BUTTON)
+    def is_open_comments_visible(self):
         return self.is_visible(ForumPageLocators.COMMENT_ITEM)
+
+    def click_comment_button(self):
+        self.scroll_and_click(ForumPageLocators.COMMENT_BUTTON)
 
     def open_status_dropdown(self):
         self.scroll_and_click(ForumPageLocators.CANCEL_FILTER_BUTTON)

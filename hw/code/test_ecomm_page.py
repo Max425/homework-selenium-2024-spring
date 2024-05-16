@@ -11,7 +11,7 @@ class TestEcommPage(BaseCase):
         ecomm_page.cancel_education()
         self.wait.until(lambda d : ecomm_page.is_education_modal_closed())
         ecomm_page.create_new_catalog()
-        assert ecomm_page.new_catalog_modal_page_became_visible()
+        assert ecomm_page.is_new_catalog_modal_page_became_visible()
 
     def test_empty_feed_url(self, ecomm_page):
         ecomm_page.cancel_education()

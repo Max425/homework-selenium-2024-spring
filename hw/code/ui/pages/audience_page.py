@@ -11,7 +11,7 @@ class AudiencePage(BasePage):
     def click_create_audience_button(self):
         self.click(self.locators.CREATE_AUDIENCE_BUTTON)
 
-    def create_audience_modal_visible(self) -> bool:
+    def is_create_audience_modal_visible(self) -> bool:
         return self.is_visible(self.locators.MODAL("Создание аудитории"))
 
     def get_default_audience_name(self):
@@ -29,7 +29,7 @@ class AudiencePage(BasePage):
     def click_add_source_button(self):
         self.click(self.locators.ADD_SOURCE_BUTTON)
 
-    def add_source_modal_visible(self) -> bool:
+    def is_add_source_modal_visible(self) -> bool:
         return self.is_visible(self.locators.MODAL("Включить источник"))
 
     def get_add_source_modal(self) -> WebElement:
