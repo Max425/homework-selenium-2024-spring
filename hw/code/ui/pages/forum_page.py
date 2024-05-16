@@ -31,12 +31,12 @@ class ForumPage(BasePage):
         return self.find(ForumPageLocators.NOT_FOUND)
 
     def click_drop_filtres(self):
-        return self.click(ForumPageLocators.DROP_FILTERS)
+        return self.scroll_and_click(ForumPageLocators.DROP_FILTERS)
 
     def open_comments(self):
-        self.click(ForumPageLocators.COMMENT_BUTTON)
+        self.scroll_and_click(ForumPageLocators.COMMENT_BUTTON)
         return self.is_visible(ForumPageLocators.COMMENT_ITEM)
 
     def open_status_dropdown(self):
-        self.click(ForumPageLocators.CANCEL_FILTER_BUTTON)
+        self.scroll_and_click(ForumPageLocators.CANCEL_FILTER_BUTTON)
         self.open_filter_dropdown('Любой статус')

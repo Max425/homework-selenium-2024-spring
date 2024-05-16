@@ -30,4 +30,4 @@ class RegistrationPageLocators:
     
     INN_FIELD = (By.NAME, "inn")
 
-    OFFER_FIELD = (By.NAME, "offer")
+    OFFER_FIELD = (By.XPATH, f"//*[@class='vkuiCheckbox__icon vkuiCheckbox__icon--on']")
