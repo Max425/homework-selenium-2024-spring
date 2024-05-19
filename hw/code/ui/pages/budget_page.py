@@ -42,3 +42,6 @@ class BudgetPage(BasePage):
 
     def get_vkpay_iframe(self):
         return self.find(self.locators.VKPAY_IFRAME)
+    
+    def is_replenishment_modal_field_visible(self, label):
+        return self.is_visible(self.locators.REPLENISHMENT_MODAL_FIELD(label))

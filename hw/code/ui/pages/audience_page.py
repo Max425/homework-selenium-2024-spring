@@ -2,6 +2,7 @@ from selenium.webdriver import Keys
 from selenium.webdriver.remote.webelement import WebElement
 from ui.locators.audience_page_locators import AudiencePageLocators
 from ui.pages.base_page import BasePage
+from selenium.common import TimeoutException
 
 
 class AudiencePage(BasePage):
@@ -90,3 +91,12 @@ class AudiencePage(BasePage):
 
     def get_error_text(self) -> str:
         return self.find(self.locators.ERROR).text
+    
+    def wait_period_input_changed(self):
+        value = self.get_period_input_value()
+        try:
+            self.wait(2).until(lambda d: self.get_period_input_value() != value)
+            return True
+        except TimeoutException:
+            return False
+
