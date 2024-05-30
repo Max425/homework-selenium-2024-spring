@@ -15,3 +15,7 @@ class BudgetPageLocators:
     SUBMIT_BUTTON = (By.XPATH, "//*[contains(@class, 'CreateInvoiceModal_button__')]")
 
     VKPAY_IFRAME = (By.XPATH, "//iframe[contains(@class, 'CreateInvoiceModal_iframe')]")
+
+    @staticmethod
+    def REPLENISHMENT_MODAL_FIELD(label):
+        return (By.XPATH, f"//div[contains(@class, 'CreateInvoiceModal_top') and contains(span, '{label}')]")

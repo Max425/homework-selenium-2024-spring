@@ -2,6 +2,7 @@ from selenium.webdriver import Keys
 from selenium.webdriver.remote.webelement import WebElement
 from ui.locators.audience_page_locators import AudiencePageLocators
 from ui.pages.base_page import BasePage
+from selenium.common import TimeoutException
 
 
 class AudiencePage(BasePage):
@@ -57,8 +58,14 @@ class AudiencePage(BasePage):
         minus_phrases_input.clear()
         minus_phrases_input.send_keys(phrases)
 
-    def get_period_input(self) -> WebElement:
-        return self.find(self.locators.MODAL_INPUT("Период поиска"))
+    def get_period_input_value(self) -> WebElement:
+        return self.find(self.locators.MODAL_INPUT("Период поиска")).get_attribute('value')
+    
+    def fill_period_input(self, value):
+        period_input = self.find(self.locators.MODAL_INPUT("Период поиска"))
+        period_input.send_keys(Keys.CONTROL,"a")
+        period_input.send_keys(Keys.BACKSPACE)
+        period_input.send_keys(value)
 
     def get_source_card_content(self) -> str:
         return self.find(self.locators.SOURCE_CARD_CONTENT).text
@@ -84,3 +91,12 @@ class AudiencePage(BasePage):
 
     def get_error_text(self) -> str:
         return self.find(self.locators.ERROR).text
+    
+    def wait_period_input_changed(self):
+        value = self.get_period_input_value()
+        try:
+            self.wait(2).until(lambda d: self.get_period_input_value() != value)
+            return True
+        except TimeoutException:
+            return False
+
