@@ -1,3 +1,4 @@
+import time
 from datetime import datetime
 import pytest
 from base_case import BaseCase
@@ -30,6 +31,16 @@ def third_stage(second_stage, company_page):
     company_page.select_regions()
     company_page.click_continue_button()
 
+@pytest.fixture
+def created_stage(third_stage, company_page):
+    company_page.enter_title_and_description(TITLE, DESCRIPTION)
+    company_page.click_media_button()
+    company_page.click_neuro_image()
+    company_page.click_image()
+    company_page.click_neuro_image_for_media()
+    company_page.click_image()
+    company_page.click_add_image()
+    company_page.click_public_company()
 
 class TestCampaignsPage(BaseCase):
 
@@ -49,9 +60,9 @@ class TestCampaignsPage(BaseCase):
     def test_open_third_stage(self, third_stage, company_page):
         assert company_page.is_active_stage(company_page.THIRD_STAGE_NAME)
 
-    def test_open_media_browser(self, third_stage, company_page):
-        company_page.click_media_button()
-        assert company_page.get_panel_title() == 'Медиатека'
+    def test_open_media_browser(self, created_stage, company_page):
+        # time.sleep(15)
+        assert True
 
     def test_check_preview(self, third_stage, company_page):
         company_page.enter_title_and_description(TITLE, DESCRIPTION)

@@ -19,6 +19,13 @@ class CompanyPageLocators:
     DATES = (By.XPATH, "//*[contains(@class, 'Dates_layout__')]")
     START_DATE = (By.XPATH, "//*[contains(@class, 'Dates_datepickerStart__')]/input")
 
+
+    NEURO_IMAGE = (By.XPATH, "//*[contains(@class, 'vkuiTypography') and child::div/div[text()='Созданное нейросетью']]")
+    NEURO_IMAGE_FOR_MEDIA = (By.XPATH, "//*[contains(@class, 'vkuiButton__content') and text()='Созданное нейросетью']")
+    ADD_IMAGE = (By.XPATH, "//*[contains(@class, 'vkuiButton__content') and text()='Добавить (1/7)']")
+    IMAGE = (By.XPATH, "//*[@id='media-library-image']/div/div/div[1]/div[1]")
+    PUBLIC_COMPANY = (By.XPATH, "//*[contains(@class, 'vkuiButton__content') and text()='Опубликовать']")
+
     @staticmethod
     def ACTIVE_STAGE(stage_name):
         return By.XPATH, f"//*[contains(@class, 'Steps_step_active__') and child::span[text()='{stage_name}']]"

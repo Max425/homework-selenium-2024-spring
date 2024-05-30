@@ -101,3 +101,20 @@ class CompanyPage(BasePage):
 
     def click_publish_button(self):
         self.click(self.locators.PUBLISH_BUTTON)
+
+    def click_neuro_image(self):
+        self.click(self.locators.NEURO_IMAGE)
+
+    def click_neuro_image_for_media(self):
+        self.scroll_and_click(self.locators.NEURO_IMAGE_FOR_MEDIA)
+
+    def click_add_image(self):
+        self.click(self.locators.ADD_IMAGE)
+
+
+    def click_image(self):
+        self.click(self.locators.IMAGE)
+
+    def click_public_company(self):
+        self.click(self.locators.PUBLIC_COMPANY)
+
