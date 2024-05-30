@@ -14,7 +14,7 @@ class EcommPageLocators:
     MARKETPLACE = (By.XPATH, "//*[@data-entityid='marketplace']")
     ADD_FILE = (By.XPATH, "//*[@data-entityid='file']")
 
-    CREATE_CATALOG_FINISH_BUTTON = (By.XPATH, f"//*[@data-testid='submit']")
+    CREATE_CATALOG_FINISH_BUTTON = (By.XPATH, "//*[@data-testid='submit']")
     CANCEL_CATALOG_FINISH_BUTTON = (By.XPATH, f"//*[@data-testid='cancel']")
 
     URL_INPUT = (By.XPATH, "//*[@data-testid='catalogUrl-input']")
@@ -30,3 +30,18 @@ class EcommPageLocators:
     CATALOGS_TABLE = (By.XPATH, "//*[@role='table']")
 
     SPINNER_BUTTON = (By.XPATH, "//*[contains(@class, 'vkuiSpinner vkuiButton__spinner')]")
+
+    ECOMM_MENU_BUTTON = (By.XPATH, "//*[contains(@href, '/hq/ecomm/catalogs')]")
+
+    CATALOG_TITLE = (By.XPATH, "//*[contains(@class, 'CatalogNavigationCell')]")
+
+    CATALOG_STATUS = (By.XPATH, "//*[contains(@class, 'StatusCell_cell')]")
+
+    @staticmethod
+    def PRODUCT_CARD(title):
+        return (By.XPATH, f"//*[contains(@class, 'NameCell_itemNameBlock_') and contains(h5, '{title}')]")
+    
+    def BUTTON(lable):
+        return (By.XPATH, f"//*[contains(@class, 'vkuiButton__in')]/span[text()='{lable}']")
+    
+    MODAL_CONFIRM_DELETE = (By.ID, "_modal_40")
