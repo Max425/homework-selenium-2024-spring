@@ -14,6 +14,9 @@ class AudiencePage(BasePage):
     def is_create_audience_modal_visible(self) -> bool:
         return self.is_visible(self.locators.MODAL("Создание аудитории"))
 
+    def is_create_audience_modal_invisible(self) -> bool:
+        return not self.is_visible(self.locators.MODAL("Создание аудитории"))
+
     def get_default_audience_name(self):
         return self.find(self.locators.AUDIENCE_NAME_INPUT).get_attribute('value')
 
@@ -31,6 +34,12 @@ class AudiencePage(BasePage):
 
     def is_add_source_modal_visible(self) -> bool:
         return self.is_visible(self.locators.MODAL("Включить источник"))
+
+    def is_add_source_modal_invisible(self) -> bool:
+        return not self.is_visible(self.locators.MODAL("Включить источник"))
+
+    def is_vk_group_subscribers_modal_visible(self) -> bool:
+        return self.is_visible(self.locators.MODAL("Подписчики сообществ"))
 
     def get_add_source_modal(self) -> WebElement:
         return self.find(self.locators.MODAL("Включить источник"))
@@ -60,6 +69,14 @@ class AudiencePage(BasePage):
     def get_period_input(self) -> WebElement:
         return self.find(self.locators.MODAL_INPUT("Период поиска"))
 
+    def get_period_input_value(self) -> WebElement:
+        return self.find(self.locators.MODAL_INPUT("Период поиска")).get_attribute('value')
+
+    def enter_period(self, period) -> WebElement:
+        input = self.find(self.locators.MODAL_INPUT("Период поиска"))
+        input.clear()
+        input.send_keys(period)
+
     def get_source_card_content(self) -> str:
         return self.find(self.locators.SOURCE_CARD_CONTENT).text
 
@@ -84,3 +101,54 @@ class AudiencePage(BasePage):
 
     def get_error_text(self) -> str:
         return self.find(self.locators.ERROR).text
+    
+    def get_created_audience(self, name):
+        return self.find(self.locators.AUDIENCE_CREATED(name))
+    
+    def is_created_audience_visible(self, name):
+        return self.is_visible(self.locators.AUDIENCE_CREATED(name))
+    
+    def delete_audience(self):
+        self.click(self.locators.AUDIENCE_SELECT)
+        self.click(self.locators.AUDIENCE_DELETE)
+        self.click(self.locators.AUDIENCE_APROVE_DELETING)
+
+    def create_audience(self):
+        self.click(self.locators.AUDIENCE_CREATE)
+
+    def enter_vk_group_link(self, group_link: str):
+        elem = self.find(self.locators.GROUP_LINK_INPUT)
+        elem.clear()
+        elem.send_keys(group_link)
+
+    def select_vk_group(self):
+        self.click(self.locators.GROUP_SELECT)
+        self.click(self.locators.GROUP_OPTION)
+        self.click(self.locators.MODAL("Подписчики сообществ"))
+
+    def create_audience_by_subscribers(self):
+        self.click(self.locators.AUDIENCE_CREATE_SUBSCRIBERS)
+
+    def check_selected_group(self):
+        return self.find(self.locators.SELECTED_GROUP).text
+
+    def add_many_vk_group(self):
+        self.click(self.locators.ADD_MANY_GROUPS_BTN)
+        self.click(self.locators.SELECT_VK_GROUPS)
+    
+    def is_modal_add_vk_groups_visible(self):
+        return self.is_visible(self.locators.SELECT_MANY_GROUPS_MODAL)
+
+    def add_groups(self, group_link):
+        elem = self.find(self.locators.MODAL_FIELD(''))
+        elem.clear()
+        elem.send_keys(group_link)
+
+    def get_adding_groups_status(self):
+        return self.find(self.locators.ADD_MANY_GROUPS_SUCCESS).text
+
+    def add_groups_to_auditory(self):
+        self.click(self.locators.COMPLETE_ADD_MANY_GROUPS_BTN)
+    
+    def close_modal(self):
+        self.click(self.locators.CLOSE_BTN)
