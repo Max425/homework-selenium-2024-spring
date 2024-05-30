@@ -10,15 +10,14 @@ class SettingsHistoryPageLocators:
 
     CANCEL_DATA_BUTTON = (By.XPATH, f"//*[contains(@class, 'vkuiButton__content') and text()='Отменить']")
 
-
     @staticmethod
     def SELECT_FILTER_FIELD(filter):
         return By.XPATH, f"//*[contains(@class, 'vkuiTypography') and text()='{filter}']"
-    
+
     @staticmethod
     def CHECK_FILTER_FIELD(filter):
         return By.XPATH, f"//*[contains(@class, 'vkuiTypography')]//div[text()='{filter}']"
-    
+
     FILTER_DATA_BUTTON = (By.XPATH, f"//*[contains(@class, 'vkuiIcon--calendar_outline_24')]")
 
     @staticmethod

@@ -16,7 +16,7 @@ class SettingsNotificationsPage(BasePage):
 
     def is_save_button_not_visible(self) -> bool:
         return not self.is_visible(SettingsNotificationsPageLocators.SAVE_BUTTON)
-    
+
     def is_save_button_enabled(self) -> bool:
         return self.find(SettingsNotificationsPageLocators.SAVE_BUTTON).is_enabled()
 

@@ -16,12 +16,16 @@ class BasePage(object):
             timeout = 5
         return WebDriverWait(self.driver, timeout=timeout)
 
+    def wait_until(self, method, timeout=None):
+        if timeout is None:
+            timeout = 10
+        return WebDriverWait(self.driver, timeout=timeout).until(method)
+
     def find(self, locator, timeout=None) -> WebElement:
         return self.wait(timeout).until(EC.presence_of_element_located(locator))
 
     def find_clickable(self, locator, timeout=None) -> WebElement:
         return self.wait(timeout).until(EC.element_to_be_clickable(locator))
-
 
     def click(self, locator, timeout=None):
         elem = self.find(locator, timeout=timeout)

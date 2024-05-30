@@ -11,6 +11,3 @@ class SettingsNotificationsPageLocators:
     @staticmethod
     def SELECT_NOTIFICATION_SETTING(select_type):
         return By.XPATH, f"//*[contains(@class, 'vkuiCheckbox__title')]//div[text()='{select_type}']"
-
-    
-    

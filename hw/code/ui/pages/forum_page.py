@@ -14,7 +14,6 @@ class ForumPage(BasePage):
     def check_subtitle(self):
         return self.find(ForumPageLocators.SUBTITLE).text
 
-
     def open_filter_dropdown(self, filter_name):
         self.click(ForumPageLocators.SELECTED_FILTER(filter_name))
 

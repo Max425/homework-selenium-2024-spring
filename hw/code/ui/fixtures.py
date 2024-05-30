@@ -11,7 +11,6 @@ from ui.pages.education_page import EducationPage
 from ui.pages.forum_page import ForumPage
 from ui.pages.header_page import HeaderPage
 from ui.pages.home_page import HomePage
-from ui.pages.main_page import MainPage
 from ui.pages.menu_page import MenuPage
 from ui.pages.money_page import MoneyPage
 from ui.pages.registration_page import RegistrationPage
@@ -19,6 +18,7 @@ from ui.pages.settings_access_page import SettingsAccessPage
 from ui.pages.settings_common_page import SettingsCommonPage
 from ui.pages.settings_history_page import SettingsHistoryPage
 from ui.pages.settings_notifications_page import SettingsNotificationsPage
+from ui.pages.company_page import CompanyPage
 
 LOGIN_URL = 'https://ads.vk.com/hq/registration'
 
@@ -58,10 +58,6 @@ def all_drivers(config, request):
     yield browser
     browser.quit()
 
-
-@pytest.fixture
-def main_page(driver):
-    return MainPage(driver=driver)
 
 
 @pytest.fixture
@@ -129,15 +125,18 @@ def settings_notifications_page(driver, home_page):
     driver.get(SettingsNotificationsPage.url)
     return SettingsNotificationsPage(driver=driver)
 
+
 @pytest.fixture
 def settings_access_page(driver, home_page):
     driver.get(SettingsAccessPage.url)
     return SettingsAccessPage(driver=driver)
 
+
 @pytest.fixture
 def settings_history_page(driver, home_page):
     driver.get(SettingsHistoryPage.url)
     return SettingsHistoryPage(driver=driver)
+
 
 @pytest.fixture
 def budget_page(driver, home_page):
@@ -150,16 +149,24 @@ def audience_page(driver, home_page):
     driver.get(AudiencePage.url)
     return AudiencePage(driver=driver)
 
+
 @pytest.fixture
 def education_page(driver, home_page):
     return EducationPage(driver=driver)
+
 
 @pytest.fixture
 def settings_common_page(driver, home_page):
     driver.get(SettingsCommonPage.url)
     return SettingsCommonPage(driver=driver)
 
+
 @pytest.fixture
 def ecomm_page(driver, home_page):
     driver.get(EcommPage.url)
     return EcommPage(driver=driver)
+
+@pytest.fixture
+def company_page(driver, home_page):
+    driver.get(CompanyPage.url)
+    return CompanyPage(driver=driver)

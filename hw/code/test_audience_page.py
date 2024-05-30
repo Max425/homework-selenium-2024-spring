@@ -3,7 +3,6 @@ import pytest
 from selenium.webdriver.support.wait import WebDriverWait
 
 from base_case import BaseCase
-from ui.fixtures import driver
 
 KEY_PHRASES_SOURCE = 'Ключевые фразы'
 KEY_PHRASE = "люблю вк"
@@ -17,7 +16,7 @@ def create_audience_modal_page(audience_page):
 @pytest.fixture
 def key_phrases_source(create_audience_modal_page, audience_page):
     audience_page.click_add_source_button()
-    audience_page.select_source(KEY_PHRASES_SOURCE)
+    audience_page.select_source('Ключевые фразы')
 
 
 class TestAudiencePage(BaseCase): 
@@ -32,12 +31,13 @@ class TestAudiencePage(BaseCase):
     def test_add_source_modal_opens(self, create_audience_modal_page, audience_page):
         audience_page.click_add_source_button()
         assert audience_page.is_add_source_modal_visible()
-        for source in ["Существующая аудитория", "Список пользователей", "Ключевые фразы", "События в рекламной кампании"]:
+        for source in ["Существующая аудитория", "Список пользователей", "Ключевые фразы",
+                       "События в рекламной кампании"]:
             assert audience_page.is_source_select_button_visible(source)
 
     def test_key_pharases_opens(self, create_audience_modal_page, audience_page):
         audience_page.click_add_source_button()
-        audience_page.select_source(KEY_PHRASES_SOURCE)
+        audience_page.select_source('Ключевые фразы')
         for field in ["Название", "Ключевые фразы", "Минус-фразы", "Период поиска"]:
             assert audience_page.is_modal_field_visible(field)
 
@@ -48,7 +48,7 @@ class TestAudiencePage(BaseCase):
 
     def test_add_source_by_key_phrases(self, key_phrases_source, audience_page):
         assert not audience_page.is_submit_button_enabled()
-        audience_page.enter_key_phrases(KEY_PHRASE)
+        audience_page.enter_key_phrases("люблю вк")
         assert audience_page.is_submit_button_enabled()
         audience_page.click_submit_button()
         assert KEY_PHRASE in audience_page.get_source_card_content()

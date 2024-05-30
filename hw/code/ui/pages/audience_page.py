@@ -2,6 +2,7 @@ from selenium.webdriver import Keys
 from selenium.webdriver.remote.webelement import WebElement
 from ui.locators.audience_page_locators import AudiencePageLocators
 from ui.pages.base_page import BasePage
+from selenium.common import TimeoutException
 
 
 class AudiencePage(BasePage):
@@ -66,8 +67,22 @@ class AudiencePage(BasePage):
         minus_phrases_input.clear()
         minus_phrases_input.send_keys(phrases)
 
-    def get_period_input(self) -> WebElement:
-        return self.find(self.locators.MODAL_INPUT("Период поиска"))
+    def get_period_input_value(self) -> WebElement:
+        return self.find(self.locators.MODAL_INPUT("Период поиска")).get_attribute('value')
+    
+    def fill_period_input(self, value):
+        period_input = self.find(self.locators.MODAL_INPUT("Период поиска"))
+        period_input.send_keys(Keys.CONTROL,"a")
+        period_input.send_keys(Keys.BACKSPACE)
+        period_input.send_keys(value)
+
+    def get_period_input_value(self) -> WebElement:
+        return self.find(self.locators.MODAL_INPUT("Период поиска")).get_attribute('value')
+
+    def enter_period(self, period) -> WebElement:
+        input = self.find(self.locators.MODAL_INPUT("Период поиска"))
+        input.clear()
+        input.send_keys(period)
 
     def get_period_input_value(self) -> WebElement:
         return self.find(self.locators.MODAL_INPUT("Период поиска")).get_attribute('value')
@@ -82,20 +97,20 @@ class AudiencePage(BasePage):
 
     def get_created_audience_title(self) -> str:
         return self.find(self.locators.CREATED_AUDIENCE_TITLE).text
-    
-    def is_add_source_button_visible(self)->bool:
+
+    def is_add_source_button_visible(self) -> bool:
         return self.is_visible(self.locators.ADD_SOURCE_BUTTON)
-    
-    def is_source_select_button_visible(self, label)->bool:
+
+    def is_source_select_button_visible(self, label) -> bool:
         return self.is_visible(self.locators.SOURCE_ITEM(label))
-    
+
     def is_modal_field_visible(self, label):
         return self.is_visible(self.locators.MODAL_FIELD(label)) or self.is_visible(self.locators.MODAL_INPUT(label))
-    
+
     def is_submit_button_enabled(self) -> bool:
         submit_button = self.find(self.locators.MODAL_SUBMIT_BUTTON)
         return submit_button.is_enabled()
-    
+
     def click_submit_button(self) -> bool:
         self.click(self.locators.MODAL_SUBMIT_BUTTON)
 
