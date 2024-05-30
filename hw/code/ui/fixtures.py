@@ -19,6 +19,7 @@ from ui.pages.settings_common_page import SettingsCommonPage
 from ui.pages.settings_history_page import SettingsHistoryPage
 from ui.pages.settings_notifications_page import SettingsNotificationsPage
 from ui.pages.company_page import CompanyPage
+from ui.pages.leadform_page import LeadformPage
 
 LOGIN_URL = 'https://ads.vk.com/hq/registration'
 
@@ -170,3 +171,8 @@ def ecomm_page(driver, home_page):
 def company_page(driver, home_page):
     driver.get(CompanyPage.url)
     return CompanyPage(driver=driver)
+
+@pytest.fixture
+def leadform_page(driver, home_page):
+    driver.get(LeadformPage.url)
+    return LeadformPage(driver=driver)
