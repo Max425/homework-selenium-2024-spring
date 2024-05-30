@@ -31,8 +31,12 @@ class TestLeadformPage(BaseCase):
         leadform_page.fill_leadform_legal_name_field(COMPANY_LEGAL_NAME)
         leadform_page.fill_leadform_legal_adress_field(COMPANY_ADRESS)
         leadform_page.click_save_button()
-
+        time.sleep(2)
         assert leadform_page.is_leadform_in_list_exists(LEADFORM_NAME)
+
+    def test_find_leadform(self, leadform_page):
+        leadform_page.fill_find_leadform_field('Лид-форма 15')
+        assert leadform_page.is_leadform_in_list_exists('Лид-форма 15')
 
     def test_cancel_create_leadform(self, leadform_page):
         leadform_page.click_create_leadform_button()
@@ -41,4 +45,7 @@ class TestLeadformPage(BaseCase):
         leadform_page.click_cancel_button()
         assert not leadform_page.is_leadform_page_opened()
 
-    
+    def test_delete_leadform(self, leadform_page):
+        leadform_page.click_delete_leadform_button(LEADFORM_NAME)
+        assert not leadform_page.is_leadform_in_list_exists(LEADFORM_NAME)
+
