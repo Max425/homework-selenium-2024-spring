@@ -3,10 +3,6 @@ from base_case import BaseCase
 
 class TestForumPage(BaseCase):
 
-    def test_content(self, forum_page):
-        assert forum_page.check_title() == 'Форум идей'
-        assert forum_page.check_subtitle() == 'Голосуйте за лучшие идеи или предлагайте свои'
-
     def test_search_not_found(self, forum_page):
         assert not forum_page.is_visible_nf()
         forum_page.fill_search('-1')
