@@ -31,12 +31,15 @@ class TestLeadformPage(BaseCase):
         leadform_page.fill_leadform_legal_name_field(COMPANY_LEGAL_NAME)
         leadform_page.fill_leadform_legal_adress_field(COMPANY_ADRESS)
         leadform_page.click_save_button()
-        time.sleep(2)
         assert leadform_page.is_leadform_in_list_exists(LEADFORM_NAME)
 
     def test_find_leadform(self, leadform_page):
-        leadform_page.fill_find_leadform_field('Лид-форма 15')
-        assert leadform_page.is_leadform_in_list_exists('Лид-форма 15')
+        leadform_page.fill_find_leadform_field(LEADFORM_NAME)
+        assert leadform_page.is_leadform_in_list_exists(LEADFORM_NAME)
+
+        unknown_leadform_name = 'Неизвестная лид-форма'
+        leadform_page.fill_find_leadform_field(unknown_leadform_name)
+        assert not leadform_page.is_leadform_in_list_exists(unknown_leadform_name)
 
     def test_cancel_create_leadform(self, leadform_page):
         leadform_page.click_create_leadform_button()
