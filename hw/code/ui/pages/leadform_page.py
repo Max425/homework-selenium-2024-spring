@@ -1,5 +1,6 @@
 from ui.pages.base_page import BasePage
 from ui.locators.leadform_page_locators import LeadformPageLocators
+import time
 
 
 class LeadformPage(BasePage):
@@ -50,3 +51,11 @@ class LeadformPage(BasePage):
     
     def is_leadform_in_list_exists(self, name: str) -> bool:
         return self.is_visible(LeadformPageLocators.SELECT_FROM_LEADFORM_LIST(name))
+    
+    def click_delete_leadform_button(self, name: str):
+        self.click(LeadformPageLocators.SELECT_FROM_LEADFORM_LIST(name))
+        self.click(LeadformPageLocators.DELETE_LEADFORM_BUTTON)
+        self.click(LeadformPageLocators.CONTINUE_BUTTON)
+
+    def fill_find_leadform_field(self, name: str):
+        self.fill_field(LeadformPageLocators.INPUT_FIND_LEADFORM, name)

@@ -31,3 +31,7 @@ class LeadformPageLocators:
     @staticmethod
     def SELECT_FROM_LEADFORM_LIST(name: str):
         return By.XPATH, f"//*[contains(@class, 'vkuiLink') and text()='{name}']"
+    
+    DELETE_LEADFORM_BUTTON = (By.XPATH, f"//*[contains(@class, 'vkuiTypography') and text()='Удалить']")
+
+    INPUT_FIND_LEADFORM = (By.XPATH, '//input[@placeholder="Поиск"]')
