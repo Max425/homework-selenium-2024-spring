@@ -34,6 +34,10 @@ class AudiencePageLocators:
     @staticmethod
     def MODAL_FIELD(label):
         return By.XPATH, f"//div[contains(h5, '{label}')]//textarea"
+    
+    @staticmethod
+    def AUDITORY_ROW(label):
+        return By.XPATH, f"//*[contains(@class, 'vkuiTypography')]//*[text()='{label}']"
 
     @staticmethod
     def MODAL_INPUT(label):
@@ -63,4 +67,6 @@ class AudiencePageLocators:
     
     
     AUDIENCE_CREATE_SUBSCRIBERS = (By.XPATH, f"//*[contains(@class, 'ModalSidebarPage_container') and contains(div/h2, 'Подписчики сообществ')]//*[@data-testid='submit']")
+    
+    EDIT_BTN = (By.XPATH, "//div[contains(@class, 'Header_header__')]//*[contains(@class, 'vkuiIcon')]")
     
