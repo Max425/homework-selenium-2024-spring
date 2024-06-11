@@ -1,6 +1,7 @@
 from datetime import datetime
 import pytest
 from selenium.webdriver.support.wait import WebDriverWait
+from ui.fixtures import driver
 
 from base_case import BaseCase
 
@@ -22,45 +23,41 @@ def key_phrases_source(create_audience_modal_page, audience_page):
 class TestAudiencePage(BaseCase): 
     wait = WebDriverWait(driver, timeout=0)
 
-    def test_create_audience_modal_opens(self, audience_page):
+    def test_add_source_by_key_phrases(self, audience_page):
         audience_page.click_create_audience_button()
         assert audience_page.is_create_audience_modal_visible()
         assert audience_page.get_default_audience_name() == "Аудитория " + datetime.now().strftime("%Y-%m-%d")
         assert audience_page.is_add_source_button_visible()
-
-    def test_add_source_modal_opens(self, create_audience_modal_page, audience_page):
         audience_page.click_add_source_button()
         assert audience_page.is_add_source_modal_visible()
         for source in ["Существующая аудитория", "Список пользователей", "Ключевые фразы",
                        "События в рекламной кампании"]:
             assert audience_page.is_source_select_button_visible(source)
-
-    def test_key_pharases_opens(self, create_audience_modal_page, audience_page):
-        audience_page.click_add_source_button()
         audience_page.select_source('Ключевые фразы')
         for field in ["Название", "Ключевые фразы", "Минус-фразы", "Период поиска"]:
             assert audience_page.is_modal_field_visible(field)
-
-    def test_add_zero_search_period(self, key_phrases_source, audience_page):
-        audience_page.enter_period('0')
-        audience_page.enter_minus_phrases('')
-        assert audience_page.get_period_input_value() == '1'
-
-    def test_add_source_by_key_phrases(self, key_phrases_source, audience_page):
         assert not audience_page.is_submit_button_enabled()
         audience_page.enter_key_phrases("люблю вк")
         assert audience_page.is_submit_button_enabled()
         audience_page.click_submit_button()
-        assert KEY_PHRASE in audience_page.get_source_card_content()
+        assert "люблю вк" in audience_page.get_source_card_content()
+        self.wait.until(lambda d : audience_page.is_add_source_modal_invisible())
         audience_page.create_audience()
-        assert ("Аудитория " + datetime.now().strftime("%Y-%m-%d")) in audience_page.get_created_audience()
+        assert audience_page.is_created_audience_visible("Аудитория " + datetime.now().strftime("%Y-%m-%d"))
+        self.wait.until(lambda d : audience_page.is_create_audience_modal_invisible())
         audience_page.delete_audience()
 
-    def test_add_source_by_key_phrases_not_full_form(self, key_phrases_source, audience_page):
+    def test_add_source_by_key_and_minus_phrases(self, key_phrases_source, audience_page):
         audience_page.enter_minus_phrases('минус')
+        assert not audience_page.is_submit_button_enabled()
+        audience_page.enter_key_phrases("люблю вк")
         assert audience_page.is_submit_button_enabled()
         audience_page.click_submit_button()
-        assert "Обязательное поле" == audience_page.get_error_text()
+        assert "люблю вк" in audience_page.get_source_card_content()
+        audience_page.create_audience()
+        assert audience_page.is_created_audience_visible("Аудитория " + datetime.now().strftime("%Y-%m-%d"))
+        self.wait.until(lambda d : audience_page.is_create_audience_modal_invisible())
+        audience_page.delete_audience()
 
     def test_add_source_by_existing_audience(self, audience_page):
         audience_page.click_create_audience_button()
@@ -76,6 +73,11 @@ class TestAudiencePage(BaseCase):
         audience_page.click_create_audience_button()
         audience_page.click_add_source_button()
         audience_page.select_source("Существующая аудитория")
+        audience_page.select_existing_audience()
+        self.wait.until(lambda d : audience_page.is_add_source_modal_invisible())
+        audience_page.create_audience()
+        assert audience_page.is_created_audience_visible("Аудитория " + datetime.now().strftime("%Y-%m-%d"))
+        self.wait.until(lambda d : audience_page.is_create_audience_modal_invisible())
         audience_page.delete_audience()
 
     def test_add_source_by_vk_group(self, audience_page):
@@ -92,6 +94,7 @@ class TestAudiencePage(BaseCase):
         self.wait.until(lambda d : audience_page.is_add_source_modal_invisible())
         audience_page.create_audience()
         assert audience_page.get_created_audience("Аудитория " + datetime.now().strftime("%Y-%m-%d"))
+        self.wait.until(lambda d : audience_page.is_create_audience_modal_invisible())
         audience_page.delete_audience()
 
     def test_add_source_by_some_of_vk_group(self, audience_page):
@@ -112,6 +115,7 @@ class TestAudiencePage(BaseCase):
         self.wait.until(lambda d : audience_page.is_add_source_modal_invisible())
         audience_page.create_audience()
         assert audience_page.get_created_audience("Аудитория " + datetime.now().strftime("%Y-%m-%d"))
+        self.wait.until(lambda d : audience_page.is_create_audience_modal_invisible())
         audience_page.delete_audience()
 
     def test_deleting(self, audience_page):
@@ -122,6 +126,27 @@ class TestAudiencePage(BaseCase):
         audience_page.click_submit_button()
         audience_page.create_audience()
         assert audience_page.get_created_audience("Аудитория " + datetime.now().strftime("%Y-%m-%d"))
+        self.wait.until(lambda d : audience_page.is_create_audience_modal_invisible())
         audience_page.delete_audience()
         assert not audience_page.is_created_audience_visible("Аудитория " + datetime.now().strftime("%Y-%m-%d"))
+
+    def test_add_zero_search_period(self, key_phrases_source, audience_page):
+        audience_page.enter_period('0')
+        audience_page.enter_minus_phrases('')
+        assert audience_page.get_period_input_value() == '1'
+
+    def test_edit_auditory(self, audience_page):
+        audience_page.click_created_audience("Аудитория " + datetime.now().strftime("%Y-%m-%d"))
+        audience_page.click_edit()
+        for field in ["Название", "Ключевые фразы", "Минус-фразы", "Период поиска"]:
+            assert audience_page.is_modal_field_visible(field)
+        audience_page.enter_key_phrases("люблю вк")
+        assert audience_page.is_submit_button_enabled()
+        audience_page.click_submit_button()
+        assert "люблю вк" in audience_page.get_source_card_content()
+        audience_page.create_audience()
+        assert ("Аудитория " + datetime.now().strftime("%Y-%m-%d")) in audience_page.get_created_audience(("Аудитория " + datetime.now().strftime("%Y-%m-%d")))
+        audience_page.delete_audience()
+        audience_page.click_created_audience("Аудитория " + datetime.now().strftime("%Y-%m-%d"))
+        assert "люблю вк" in audience_page.get_source_card_content()
         

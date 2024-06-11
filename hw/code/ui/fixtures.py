@@ -15,9 +15,6 @@ from ui.pages.menu_page import MenuPage
 from ui.pages.money_page import MoneyPage
 from ui.pages.registration_page import RegistrationPage
 from ui.pages.settings_access_page import SettingsAccessPage
-from ui.pages.settings_common_page import SettingsCommonPage
-from ui.pages.settings_history_page import SettingsHistoryPage
-from ui.pages.settings_notifications_page import SettingsNotificationsPage
 from ui.pages.company_page import CompanyPage
 from ui.pages.leadform_page import LeadformPage
 
