@@ -13,6 +13,15 @@ class CompanyPage(BasePage):
     SECOND_STAGE_NAME = 'Группы объявлений'
     THIRD_STAGE_NAME = 'Объявления'
 
+    def click_delete(self):
+        self.click(self.locators.SELECT_DELETE)
+
+    def click_context_menu(self):
+        self.click(self.locators.CONTEXT_MENU)
+
+    def click_select_actions(self):
+        self.click(self.locators.SELECT_ACTIONS)
+
     def skip_help(self):
         try:
             self.click(self.locators.SKIP_HELP_BUTTON)
@@ -117,4 +126,7 @@ class CompanyPage(BasePage):
 
     def click_public_company(self):
         self.click(self.locators.PUBLIC_COMPANY)
+
+    def click_create(self):
+        self.click(self.locators.CREATE_BUTTON)
 
