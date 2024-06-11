@@ -168,8 +168,12 @@ class AudiencePage(BasePage):
     def close_modal(self):
         self.click(self.locators.CLOSE_BTN)
 
-    def click_auditory(self, name):
-        self.click(self.locators.AUDITORY_ROW(name))
+    def click_created_audience(self, name):
+        self.click(self.locators.AUDIENCE_CREATED(name))
 
     def click_edit(self):
         self.click(self.locators.EDIT_BTN)
+
+    def select_existing_audience(self):
+        self.click(self.locators.EXISTING_AUDIENCE_SELECT)
+        self.click(self.locators.EXISTING_AUDIENCE_OPTION)

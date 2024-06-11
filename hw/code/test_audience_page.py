@@ -41,8 +41,10 @@ class TestAudiencePage(BaseCase):
         assert audience_page.is_submit_button_enabled()
         audience_page.click_submit_button()
         assert "люблю вк" in audience_page.get_source_card_content()
+        self.wait.until(lambda d : audience_page.is_add_source_modal_invisible())
         audience_page.create_audience()
-        assert ("Аудитория " + datetime.now().strftime("%Y-%m-%d")) in audience_page.get_created_audience()
+        assert audience_page.is_created_audience_visible("Аудитория " + datetime.now().strftime("%Y-%m-%d"))
+        self.wait.until(lambda d : audience_page.is_create_audience_modal_invisible())
         audience_page.delete_audience()
 
     def test_add_source_by_key_and_minus_phrases(self, key_phrases_source, audience_page):
@@ -53,7 +55,8 @@ class TestAudiencePage(BaseCase):
         audience_page.click_submit_button()
         assert "люблю вк" in audience_page.get_source_card_content()
         audience_page.create_audience()
-        assert ("Аудитория " + datetime.now().strftime("%Y-%m-%d")) in audience_page.get_created_audience()
+        assert audience_page.is_created_audience_visible("Аудитория " + datetime.now().strftime("%Y-%m-%d"))
+        self.wait.until(lambda d : audience_page.is_create_audience_modal_invisible())
         audience_page.delete_audience()
 
     def test_add_source_by_existing_audience(self, audience_page):
@@ -70,6 +73,11 @@ class TestAudiencePage(BaseCase):
         audience_page.click_create_audience_button()
         audience_page.click_add_source_button()
         audience_page.select_source("Существующая аудитория")
+        audience_page.select_existing_audience()
+        self.wait.until(lambda d : audience_page.is_add_source_modal_invisible())
+        audience_page.create_audience()
+        assert audience_page.is_created_audience_visible("Аудитория " + datetime.now().strftime("%Y-%m-%d"))
+        self.wait.until(lambda d : audience_page.is_create_audience_modal_invisible())
         audience_page.delete_audience()
 
     def test_add_source_by_vk_group(self, audience_page):
@@ -86,6 +94,7 @@ class TestAudiencePage(BaseCase):
         self.wait.until(lambda d : audience_page.is_add_source_modal_invisible())
         audience_page.create_audience()
         assert audience_page.get_created_audience("Аудитория " + datetime.now().strftime("%Y-%m-%d"))
+        self.wait.until(lambda d : audience_page.is_create_audience_modal_invisible())
         audience_page.delete_audience()
 
     def test_add_source_by_some_of_vk_group(self, audience_page):
@@ -106,6 +115,7 @@ class TestAudiencePage(BaseCase):
         self.wait.until(lambda d : audience_page.is_add_source_modal_invisible())
         audience_page.create_audience()
         assert audience_page.get_created_audience("Аудитория " + datetime.now().strftime("%Y-%m-%d"))
+        self.wait.until(lambda d : audience_page.is_create_audience_modal_invisible())
         audience_page.delete_audience()
 
     def test_deleting(self, audience_page):
@@ -116,6 +126,7 @@ class TestAudiencePage(BaseCase):
         audience_page.click_submit_button()
         audience_page.create_audience()
         assert audience_page.get_created_audience("Аудитория " + datetime.now().strftime("%Y-%m-%d"))
+        self.wait.until(lambda d : audience_page.is_create_audience_modal_invisible())
         audience_page.delete_audience()
         assert not audience_page.is_created_audience_visible("Аудитория " + datetime.now().strftime("%Y-%m-%d"))
 
@@ -125,7 +136,7 @@ class TestAudiencePage(BaseCase):
         assert audience_page.get_period_input_value() == '1'
 
     def test_edit_auditory(self, audience_page):
-        audience_page.click_auditory("Аудитория " + datetime.now().strftime("%Y-%m-%d"))
+        audience_page.click_created_audience("Аудитория " + datetime.now().strftime("%Y-%m-%d"))
         audience_page.click_edit()
         for field in ["Название", "Ключевые фразы", "Минус-фразы", "Период поиска"]:
             assert audience_page.is_modal_field_visible(field)
@@ -134,14 +145,8 @@ class TestAudiencePage(BaseCase):
         audience_page.click_submit_button()
         assert "люблю вк" in audience_page.get_source_card_content()
         audience_page.create_audience()
-        assert ("Аудитория " + datetime.now().strftime("%Y-%m-%d")) in audience_page.get_created_audience()
+        assert ("Аудитория " + datetime.now().strftime("%Y-%m-%d")) in audience_page.get_created_audience(("Аудитория " + datetime.now().strftime("%Y-%m-%d")))
         audience_page.delete_audience()
-        audience_page.click_auditory("Аудитория " + datetime.now().strftime("%Y-%m-%d"))
+        audience_page.click_created_audience("Аудитория " + datetime.now().strftime("%Y-%m-%d"))
         assert "люблю вк" in audience_page.get_source_card_content()
-        
-        
-        
-
-
-    
         

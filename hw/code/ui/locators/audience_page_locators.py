@@ -18,7 +18,7 @@ class AudiencePageLocators:
 
     @staticmethod
     def SOURCE_ITEM(item_name):
-        return By.XPATH, f"//*[contains(@class, 'SourceTypeSelector_button__')]//*[text()='{item_name}']"
+        return By.XPATH, f"//*[contains(@class, 'vkuiCellButton')]//*[text()='{item_name}']"
 
     KEY_PHRASES_INPUT = (By.XPATH, "//*[contains(@class, 'KeyPhrases_textarea__')]/textarea")
 
@@ -69,4 +69,8 @@ class AudiencePageLocators:
     AUDIENCE_CREATE_SUBSCRIBERS = (By.XPATH, f"//*[contains(@class, 'ModalSidebarPage_container') and contains(div/h2, 'Подписчики сообществ')]//*[@data-testid='submit']")
     
     EDIT_BTN = (By.XPATH, "//div[contains(@class, 'Header_header__')]//*[contains(@class, 'vkuiIcon')]")
+
+    EXISTING_AUDIENCE_SELECT = (By.XPATH, "//*[contains(@class, 'vkuiFormItem')]//*[contains(@class, 'vkuiCustomSelect')]")
+    EXISTING_AUDIENCE_OPTION = (By.XPATH, "//*[contains(@class, 'vkuiCustomSelect__control')]//option[@value!='']")
+    
     
