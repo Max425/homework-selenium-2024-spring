@@ -1,3 +1,4 @@
+import time
 from selenium.webdriver import Keys
 from selenium.webdriver.remote.webelement import WebElement
 from ui.locators.audience_page_locators import AudiencePageLocators
@@ -16,7 +17,7 @@ class AudiencePage(BasePage):
         return self.is_visible(self.locators.MODAL("Создание аудитории"))
 
     def is_create_audience_modal_invisible(self) -> bool:
-        return not self.is_visible(self.locators.MODAL("Создание аудитории"))
+        return not self.is_visible(self.locators.MODAL("Создание аудитории"), timeout=200000)
 
     def get_default_audience_name(self):
         return self.find(self.locators.AUDIENCE_NAME_INPUT).get_attribute('value')
@@ -52,7 +53,7 @@ class AudiencePage(BasePage):
         return self.find(self.locators.MODAL("Ключевые фразы"))
 
     def select_source(self, source_name):
-        self.click(self.locators.SOURCE_ITEM(source_name))
+        self.click(self.locators.SOURCE_ITEM(source_name), 200)
 
     def enter_key_phrases(self, key_phrases: str):
         key_phrases_input = self.find(self.locators.KEY_PHRASES_INPUT)
@@ -92,8 +93,8 @@ class AudiencePage(BasePage):
         input.clear()
         input.send_keys(period)
 
-    def get_source_card_content(self) -> str:
-        return self.find(self.locators.SOURCE_CARD_CONTENT).text
+    def get_source_card_content(self, ind) -> str:
+        return self.find_all(self.locators.SOURCE_CARD_CONTENT)[ind].text
 
     def get_created_audience_title(self) -> str:
         return self.find(self.locators.CREATED_AUDIENCE_TITLE).text
@@ -123,23 +124,27 @@ class AudiencePage(BasePage):
     def is_created_audience_visible(self, name):
         return self.is_visible(self.locators.AUDIENCE_CREATED(name))
     
+    def is_created_audience_invisible(self, name):
+        return not self.is_visible(self.locators.AUDIENCE_CREATED(name))
+    
     def delete_audience(self):
-        self.click(self.locators.AUDIENCE_SELECT)
-        self.click(self.locators.AUDIENCE_DELETE)
-        self.click(self.locators.AUDIENCE_APROVE_DELETING)
+        self.click(self.locators.AUDIENCE_SELECT, 200)
+        self.click(self.locators.AUDIENCE_DELETE, 20)
+        self.click(self.locators.AUDIENCE_APROVE_DELETING, 20)
 
     def create_audience(self):
-        self.click(self.locators.AUDIENCE_CREATE)
+        self.click(self.locators.AUDIENCE_CREATE, timeout=2000)
 
-    def enter_vk_group_link(self, group_link: str):
+    def enter_vk_group_link(self, group_link):
         elem = self.find(self.locators.GROUP_LINK_INPUT)
         elem.clear()
         elem.send_keys(group_link)
 
     def select_vk_group(self):
-        self.click(self.locators.GROUP_SELECT)
-        self.click(self.locators.GROUP_OPTION)
-        self.click(self.locators.MODAL("Подписчики сообществ"))
+        self.click(self.locators.GROUP_SELECT, 2000)
+        time.sleep(2)
+        self.click(self.locators.GROUP_OPTION, 2000)
+        self.click(self.locators.MODAL("Подписчики сообществ"), 2000)
 
     def create_audience_by_subscribers(self):
         self.click(self.locators.AUDIENCE_CREATE_SUBSCRIBERS)
@@ -175,5 +180,5 @@ class AudiencePage(BasePage):
         self.click(self.locators.EDIT_BTN)
 
     def select_existing_audience(self):
-        self.click(self.locators.EXISTING_AUDIENCE_SELECT)
-        self.click(self.locators.EXISTING_AUDIENCE_OPTION)
+        self.click(self.locators.EXISTING_AUDIENCE_SELECT, 20)
+        self.click(self.locators.EXISTING_AUDIENCE_OPTION, 2000)
