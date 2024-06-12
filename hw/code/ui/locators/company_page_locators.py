@@ -2,15 +2,18 @@ from selenium.webdriver.common.by import By
 
 
 class CompanyPageLocators:
+    SELECT_WITH_DELETE = (By.CLASS_NAME, "vkuiCustomSelectInput__el ")
+    SELECT_ACTIONS = (By.XPATH, f"//*[contains(@class, 'Actions_wrapper')]")
+    SELECT_DELETE = (By.XPATH, f"//*[contains(@class, 'vkuiTypography ') and text()='Удалить']")
+    CONTEXT_MENU = (By.XPATH, f"//*[contains(@class, 'ContextMenu_triggerButtonIcon')]")
     SKIP_HELP_BUTTON = (By.XPATH, "//*[contains(@class, 'vkuiButton__content') and text()='Попробовать позже']")
+    CREATE_BUTTON = (By.XPATH, "//*[contains(@class, 'vkuiButton__content') and text()='Создать кампанию']")
     CREATE_COMPANY_BUTTON = (
         By.XPATH, "//*[contains(@class, 'vkuiButton__content') and text()='Создать']")
     CONTINUE_BUTTON = (By.XPATH, "//*[contains(@class, 'vkuiButton__content') and text()='Продолжить']")
 
     SITE = (By.XPATH, "//*[@data-id='site_conversions']")
     SITE_INPUT = (By.XPATH, "//*[@placeholder='Введите ссылку на сайт']")
-
-    ERROR = (By.XPATH, "//*[@role='alert']/div")
 
     GOAL_DROPDOWN = (By.XPATH, "//*[@data-testid='priced-goal']")
     STRATEGY_DROPDOWN = (By.XPATH, "//*[@data-testid='autobidding-mode']")
@@ -19,8 +22,8 @@ class CompanyPageLocators:
     DATES = (By.XPATH, "//*[contains(@class, 'Dates_layout__')]")
     START_DATE = (By.XPATH, "//*[contains(@class, 'Dates_datepickerStart__')]/input")
 
-
-    NEURO_IMAGE = (By.XPATH, "//*[contains(@class, 'vkuiTypography') and child::div/div[text()='Созданное нейросетью']]")
+    NEURO_IMAGE = (
+        By.XPATH, "//*[contains(@class, 'vkuiTypography') and child::div/div[text()='Созданное нейросетью']]")
     NEURO_IMAGE_FOR_MEDIA = (By.XPATH, "//*[contains(@class, 'vkuiButton__content') and text()='Созданное нейросетью']")
     ADD_IMAGE = (By.XPATH, "//*[contains(@class, 'vkuiButton__content') and text()='Добавить (1/7)']")
     IMAGE = (By.XPATH, "//*[@id='media-library-image']/div/div/div[1]/div[1]")
@@ -32,7 +35,8 @@ class CompanyPageLocators:
 
     REGION_QUICK_SELECTION = (By.XPATH, "//*[contains(@class, 'RegionsQuickSelection_item__')]")
 
-    MEDIA_BUTTON = (By.XPATH, "//*[contains(@class, 'UploadMediaButton_buttonLogoTitle__') and text()='Выбрать логотип']")
+    MEDIA_BUTTON = (
+        By.XPATH, "//*[contains(@class, 'UploadMediaButton_buttonLogoTitle__') and text()='Выбрать логотип']")
     PANEL_TITLE = (By.XPATH, "//*[contains(@class, 'ModalSidebarPage_title')]")
     GENERATED_IMAGES_TAB = (By.ID, "tab-media-library-photobank")
     IMAGE_ITEM = (By.XPATH, "//*[contains(@class, 'ImageItems_image__')]")
