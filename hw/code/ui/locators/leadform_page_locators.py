@@ -37,5 +37,9 @@ class LeadformPageLocators:
     @staticmethod
     def DELETE_LEADFORM_BUTTON(name: str):
         return By.XPATH, f"//button[text()='{name}']/..//button[span/text()='Удалить'"
+    
+    @staticmethod
+    def EDIT_LEADFORM_BUTTON(name: str):
+        return By.XPATH, f"//button[text()='{name}']/..//button[span/text()='Редактировать'"
 
     INPUT_FIND_LEADFORM = (By.XPATH, '//input[@placeholder="Поиск"]')

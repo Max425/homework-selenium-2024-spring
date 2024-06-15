@@ -62,3 +62,25 @@ class LeadformPage(BasePage):
 
     def fill_find_leadform_field(self, name: str):
         self.fill_field(LeadformPageLocators.INPUT_FIND_LEADFORM, name)
+
+    def click_editing_leadform(self, name: str):
+        self.hover_elem(LeadformPageLocators.SELECT_FROM_LEADFORM_LIST(name))
+        self.click(LeadformPageLocators.EDIT_LEADFORM_BUTTON(name))
+
+    def get_leadform_name(self):
+        return self.find(LeadformPageLocators.INPUT_NAME_LEAD_FORM).text
+
+    def get_leadform_company_name(self):
+        return self.find(LeadformPageLocators.INPUT_NAME_COMPANY).text
+    
+    def get_leadform_title(self):
+        return self.find(LeadformPageLocators.INPUT_TITLE).text
+    
+    def get_leadform_description(self):
+        return self.find(LeadformPageLocators.INPUT_DESCRIPTION).text
+    
+    def get_leadform_legal_name(self):
+        return self.find(LeadformPageLocators.INPUT_LEGAL_NAME_COMPANY).text
+    
+    def get_leadform_legal_adress(self):
+        return self.find(LeadformPageLocators.INPUT_LEGAL_ADRESS_COMPANY).text
