@@ -1,6 +1,8 @@
 from datetime import datetime
 from base_case import BaseCase
 import time
+from selenium.webdriver.support.wait import WebDriverWait
+from ui.fixtures import driver
 
 LEADFORM_NAME = 'Лид-форма ' + str(datetime.now().second)
 COMPANY_NAME = 'Umlaut'
@@ -10,6 +12,8 @@ COMPANY_LEGAL_NAME = 'OOO Umlaut'
 COMPANY_ADRESS = 'Москва, улица Селениум, дом 3'
 
 class TestLeadformPage(BaseCase):
+    wait = WebDriverWait(driver, timeout=0)
+
     def test_create_leadform(self, leadform_page):
         leadform_page.click_create_leadform_button()
         assert leadform_page.is_leadform_page_opened()
@@ -31,6 +35,7 @@ class TestLeadformPage(BaseCase):
         leadform_page.fill_leadform_legal_name_field(COMPANY_LEGAL_NAME)
         leadform_page.fill_leadform_legal_adress_field(COMPANY_ADRESS)
         leadform_page.click_save_button()
+
         assert leadform_page.is_leadform_in_list_exists(LEADFORM_NAME)
 
     def test_find_leadform(self, leadform_page):

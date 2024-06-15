@@ -40,6 +40,9 @@ class LeadformPage(BasePage):
     def is_leadform_page_opened(self) -> bool:
         return self.is_visible(LeadformPageLocators.CONTINUE_BUTTON)
     
+    def is_leadform_page_closed(self) -> bool:
+        return not self.is_visible(LeadformPageLocators.CONTINUE_BUTTON)
+    
     def is_question_leadform_page_opened(self) -> bool:
         return self.is_visible(LeadformPageLocators.ADD_CONTACTS_BUTTON)
     
@@ -53,8 +56,8 @@ class LeadformPage(BasePage):
         return self.is_visible(LeadformPageLocators.SELECT_FROM_LEADFORM_LIST(name))
     
     def click_delete_leadform_button(self, name: str):
-        self.click(LeadformPageLocators.SELECT_FROM_LEADFORM_LIST(name))
-        self.click(LeadformPageLocators.DELETE_LEADFORM_BUTTON)
+        self.hover_elem(LeadformPageLocators.SELECT_FROM_LEADFORM_LIST(name))
+        self.click(LeadformPageLocators.DELETE_LEADFORM_BUTTON(name))
         self.click(LeadformPageLocators.CONTINUE_BUTTON)
 
     def fill_find_leadform_field(self, name: str):
